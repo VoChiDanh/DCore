@@ -20,18 +20,14 @@ public class Items {
         return output;
     }
 
-    public static ItemStack makeItem(Material material, Integer amount, Boolean glow, Boolean Unbreakable, String name, String... lore) {
+    public static ItemStack makeItem(Material material, Integer amount, Boolean glow, Boolean Unbreakable, String name, List<String> lore) {
         ItemStack itemStack = new ItemStack(material, amount);
         ItemMeta itemMeta = itemStack.getItemMeta();
         if (name != null) {
             itemMeta.setDisplayName(name);
         }
         if (lore != null) {
-            List<String> lores = new ArrayList<>();
-            for (String string : lore) {
-                lores.add(Chat.colorize(string));
-            }
-            itemMeta.setLore(lores);
+            itemMeta.setLore(lore);
         }
         if (glow) {
             itemMeta.addEnchant(Enchantment.DURABILITY, 1, true);
