@@ -22,7 +22,7 @@ jobs:
           embed-author-name: "${{ github.actor }}"
           embed-author-url: "https://github.com/${{ github.actor }}"
           embed-author-icon-url: "https://github.com/${{ github.actor }}.png"
-          embed-footer-text: "Build ${{github.run_number}} passed and waiting to be updated"
+          embed-footer-text: "Build #${{github.run_number}} passed and waiting to be updated"
           embed-footer-icon-url: "https://i.imgur.com/D5KVghH.png"
           embed-description: |
             ${{ github.event.head_commit.message }}
