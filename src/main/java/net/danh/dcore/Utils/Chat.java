@@ -15,16 +15,16 @@ public class Chat {
         input = ChatColor.translateAlternateColorCodes('&', input);
         NMSAssistant nmsAssistant = new NMSAssistant();
         if (nmsAssistant.isVersionGreaterThanOrEqualTo(16)) {
-            input = translateHexColorCodes("\\&#", "", input);
+            input = translateHexColorCodes(input);
         }
 
         return input;
     }
 
 
-    public static String translateHexColorCodes(String startTag, String endTag, String message) {
+    private static String translateHexColorCodes(String message) {
 
-        final Pattern hexPattern = Pattern.compile(startTag + "([A-Fa-f0-9]{6})" + endTag);
+        final Pattern hexPattern = Pattern.compile("&#" + "([A-Fa-f0-9]{6})" + "");
         Matcher matcher = hexPattern.matcher(message);
         StringBuffer buffer = new StringBuffer(message.length() + 4 * 8);
 
