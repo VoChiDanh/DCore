@@ -1,7 +1,6 @@
 package net.danh.dcore;
 
 import net.danh.dcore.Utils.Chat;
-import org.bukkit.plugin.java.JavaPlugin;
 
 public class DCore {
 
@@ -9,9 +8,9 @@ public class DCore {
         return "v1.0";
     }
 
-    public static void dCoreLog(JavaPlugin core, String... message) {
+    public static void dCoreLog(String... message) {
         for (String messages : message) {
-            core.getLogger().info("[DCore] " + Chat.colorize(messages));
+            System.out.println("[DCore] " + Chat.colorize(messages));
         }
     }
 
