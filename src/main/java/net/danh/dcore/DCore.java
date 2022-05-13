@@ -3,8 +3,6 @@ package net.danh.dcore;
 import net.danh.dcore.Utils.Chat;
 import org.bukkit.Bukkit;
 
-import java.util.logging.Level;
-
 public class DCore {
 
     public static String getDCoreVersion() {
@@ -13,7 +11,7 @@ public class DCore {
 
     public static void dCoreLog(String... message) {
         for (String messages : message) {
-            Bukkit.getLogger().log(Level.INFO, Chat.colorize(messages));
+            Bukkit.getLogger().info("[DCore] " + Chat.colorize(messages));
         }
     }
 
