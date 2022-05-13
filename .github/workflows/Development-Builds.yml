@@ -11,11 +11,14 @@ jobs:
         with:
           msg: ${{github.repository}}
           separator: "/"
-      - name: Build passsed
-        if: ${{ contains(github.event.head_commit.message, '.') }}
+      - name: Generate build number
+        uses: einaregilsson/build-number@v3
+        with:
+          token: ${{secrets.github_token}}
+      - name: Build
         uses: tsickert/discord-webhook@v4.0.0
         with:
-          webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          webhook-url: ${{ secrets.WEBHOOK_URL }}
           username: "D-x-Z"
           embed-title: "${{ github.actor }} pushed an update for ${{ steps.split.outputs._1 }}"
           avatar-url: "https://github.com/D-x-Z.png"
@@ -23,29 +26,7 @@ jobs:
           embed-author-name: "${{ github.actor }}"
           embed-author-url: "https://github.com/${{ github.actor }}"
           embed-author-icon-url: "https://github.com/${{ github.actor }}.png"
-          embed-footer-text: "Build passed and waiting to be updated"
+          embed-footer-text: "Build #$BUILD_NUMBER passed and waiting to be updated"
           embed-footer-icon-url: "https://i.imgur.com/D5KVghH.png"
           embed-description: |
             ${{ github.event.head_commit.message }}
-
-
-      - name: Build waiting
-        if: ${{ !contains(github.event.head_commit.message, '.') }}
-        uses: tsickert/discord-webhook@v4.0.0
-        with:
-          webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          username: "D-x-Z"
-          embed-title: "${{ github.actor }} pushed an update for ${{ steps.split.outputs._1 }}"
-          avatar-url: "https://github.com/D-x-Z.png"
-          embed-color: "16776960"
-          embed-author-name: "${{ github.actor }}"
-          embed-author-url: "https://github.com/${{ github.actor }}"
-          embed-author-icon-url: "https://github.com/${{ github.actor }}.png"
-          embed-footer-text: "Build Pending..."
-          embed-footer-icon-url: "https://i.imgur.com/7rp33Yk.gif"
-          embed-description: |
-            ${{ github.event.head_commit.message }}
-
-
-
-
