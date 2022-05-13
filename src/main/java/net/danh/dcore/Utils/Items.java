@@ -24,10 +24,10 @@ public class Items {
         ItemStack itemStack = new ItemStack(material, amount);
         ItemMeta itemMeta = itemStack.getItemMeta();
         if (name != null) {
-            itemMeta.setDisplayName(name);
+            itemMeta.setDisplayName(Chat.colorize(name));
         }
         if (lore != null) {
-            itemMeta.setLore(lore);
+            itemMeta.setLore(Lore(lore));
         }
         if (glow) {
             itemMeta.addEnchant(Enchantment.DURABILITY, 1, true);
