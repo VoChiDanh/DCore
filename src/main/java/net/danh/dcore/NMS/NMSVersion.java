@@ -6,6 +6,7 @@ import java.util.Objects;
 
 /**
  * @author Callum Johnson
+ * @version 1.0
  * @since 11/12/2021 - 22:47
  */
 public class NMSVersion {

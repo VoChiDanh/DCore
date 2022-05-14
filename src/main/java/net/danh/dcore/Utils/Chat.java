@@ -6,6 +6,9 @@ import org.bukkit.ChatColor;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @version 1.0
+ */
 public class Chat {
 
     private final static char COLOR_CHAR = ChatColor.COLOR_CHAR;

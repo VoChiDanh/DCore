@@ -6,6 +6,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
 
+/**
+ * @version 1.0
+ */
 public abstract class CMDBase implements CommandExecutor {
 
     protected JavaPlugin core;

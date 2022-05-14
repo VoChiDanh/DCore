@@ -9,6 +9,9 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @version 1.0
+ */
 public class Items {
 
     /**
@@ -25,7 +28,7 @@ public class Items {
 
     /**
      * @param material    Material
-     * @param data        Data (For legacy version 1.13 below)
+     * @param data        Data (For legacy version 1.13 below), null if you use 1.13+
      * @param amount      int
      * @param glow        true/false
      * @param HideFlag    true/false

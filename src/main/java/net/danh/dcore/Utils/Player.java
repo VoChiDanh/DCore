@@ -6,6 +6,9 @@ import org.bukkit.command.ConsoleCommandSender;
 
 import java.util.List;
 
+/**
+ * @version 1.0
+ */
 public class Player {
 
     /**

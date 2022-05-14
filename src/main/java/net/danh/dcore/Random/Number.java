@@ -2,11 +2,14 @@ package net.danh.dcore.Random;
 
 import java.util.Random;
 
+/**
+ * @version 1.0
+ */
 public class Number {
 
     /**
      * @param min min
-     * @param max max > min
+     * @param max max
      * @return random
      */
     public static int getRandomInt(int min, int max) {
