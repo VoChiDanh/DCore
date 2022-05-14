@@ -6,6 +6,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout ️
+        uses: actions/checkout@v2.3.1
+      - name: Build Javadocs
+        run: |
+          echo "Building javadocs with maven"
+          ./mvn javadoc
+          echo "Moving to javadocs directory:"
+          cd build/docs/javadoc/
+          echo "Creating .nojekyll to have Github pages deploy html as is:"
+          touch .nojekyll
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4.0.0
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: build/docs/javadoc/ # The folder the action should deploy.
       - uses: jungwinter/split@v2
         id: split
         with:
