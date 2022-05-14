@@ -16,4 +16,10 @@ public class Player {
             p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TranslatableComponent(Chat.colorize(string)));
         }
     }
+
+    public static void sendPlayer(org.bukkit.entity.Player p, String type, String... msg) {
+        for (String string : msg) {
+            p.spigot().sendMessage(ChatMessageType.valueOf(type), new TranslatableComponent(Chat.colorize(string)));
+        }
+    }
 }

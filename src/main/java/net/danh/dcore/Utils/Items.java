@@ -20,7 +20,7 @@ public class Items {
         return output;
     }
 
-    public static ItemStack makeItem(Material material, Integer amount, Boolean glow, Boolean Unbreakable, String name, List<String> lore) {
+    public static ItemStack makeItem(Material material, Integer amount, Boolean glow, Boolean HideFlag, Boolean Unbreakable, String name, List<String> lore) {
         ItemStack itemStack = new ItemStack(material, amount);
         ItemMeta itemMeta = itemStack.getItemMeta();
         if (name != null) {
@@ -32,6 +32,8 @@ public class Items {
         if (glow) {
             itemMeta.addEnchant(Enchantment.DURABILITY, 1, true);
             itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        }
+        if (HideFlag) {
             itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
             itemMeta.addItemFlags(ItemFlag.HIDE_DESTROYS);
             itemMeta.addItemFlags(ItemFlag.HIDE_PLACED_ON);
