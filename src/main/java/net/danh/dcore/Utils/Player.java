@@ -2,6 +2,7 @@ package net.danh.dcore.Utils;
 
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TranslatableComponent;
+import org.bukkit.command.ConsoleCommandSender;
 
 import java.util.List;
 
@@ -16,6 +17,17 @@ public class Player {
     public static void sendPlayerMessage(org.bukkit.entity.Player p, List<String> msg) {
         for (String string : msg) {
             p.sendMessage(Chat.colorize(string));
+        }
+    }
+    public static void sendConsoleMessage(ConsoleCommandSender c, String... msg) {
+        for (String string : msg) {
+            c.sendMessage(Chat.colorize(string));
+        }
+    }
+
+    public static void sendConsoleMessage(ConsoleCommandSender c, List<String> msg) {
+        for (String string : msg) {
+            c.sendMessage(Chat.colorize(string));
         }
     }
 
