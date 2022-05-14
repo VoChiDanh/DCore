@@ -1,6 +1,5 @@
 package net.danh.dcore.Utils;
 
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
@@ -15,7 +14,7 @@ public class Items {
     public static List<String> Lore(List<String> input) {
         List<String> output = new ArrayList<>();
         for (String string : input) {
-            output.add(ChatColor.translateAlternateColorCodes('&', string));
+            output.add(Chat.colorize(string));
         }
         return output;
     }
