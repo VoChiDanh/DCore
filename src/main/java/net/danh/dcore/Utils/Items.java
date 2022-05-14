@@ -25,6 +25,7 @@ public class Items {
 
     /**
      * @param material    Material
+     * @param data        Data (For legacy version 1.13 below)
      * @param amount      int
      * @param glow        true/false
      * @param HideFlag    true/false
