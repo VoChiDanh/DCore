@@ -9,7 +9,7 @@ import java.util.List;
 public class Player {
 
     /**
-     * @param p Player
+     * @param p   Player
      * @param msg Message... send to player
      */
     public static void sendPlayerMessage(org.bukkit.entity.Player p, String... msg) {
@@ -19,7 +19,7 @@ public class Player {
     }
 
     /**
-     * @param p Player
+     * @param p   Player
      * @param msg List Message send to player
      */
     public static void sendPlayerMessage(org.bukkit.entity.Player p, List<String> msg) {
@@ -29,7 +29,7 @@ public class Player {
     }
 
     /**
-     * @param c ConsoleCommandSender
+     * @param c   ConsoleCommandSender
      * @param msg Message... send to console without [DCore]
      */
     public static void sendConsoleMessage(ConsoleCommandSender c, String... msg) {
@@ -39,7 +39,7 @@ public class Player {
     }
 
     /**
-     * @param c ConsoleCommandSender
+     * @param c   ConsoleCommandSender
      * @param msg List Message send to console without [DCore]
      */
     public static void sendConsoleMessage(ConsoleCommandSender c, List<String> msg) {
@@ -49,9 +49,9 @@ public class Player {
     }
 
     /**
-     * @param p Player
+     * @param p    Player
      * @param type CHAT, ACTION_BAR
-     * @param msg Message send to player
+     * @param msg  Message send to player
      */
     public static void sendPlayerMessageType(org.bukkit.entity.Player p, String type, String msg) {
         if (type != null) {

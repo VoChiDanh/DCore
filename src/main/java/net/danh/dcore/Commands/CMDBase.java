@@ -21,23 +21,23 @@ public abstract class CMDBase implements CommandExecutor {
     }
 
     /**
-     * @param p Player
+     * @param p    Player
      * @param args args
      */
     public abstract void playerexecute(Player p, String[] args);
 
     /**
-     * @param c ConsoleCommandSender
+     * @param c    ConsoleCommandSender
      * @param args args
      */
     public abstract void consoleexecute(ConsoleCommandSender c, String[] args);
 
     /**
-     * @param sender Player/Console
+     * @param sender  Player/Console
      * @param command cmd
-     * @param label label
-     * @param args args
-     * @return /label args
+     * @param label   label
+     * @param args    args
+     * @return /label args ...
      */
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
