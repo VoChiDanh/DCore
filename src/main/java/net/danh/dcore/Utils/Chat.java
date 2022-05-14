@@ -10,6 +10,10 @@ public class Chat {
 
     private final static char COLOR_CHAR = ChatColor.COLOR_CHAR;
 
+    /**
+     * @param input String
+     * @return string with color code
+     */
     public static String colorize(String input) {
 
         input = ChatColor.translateAlternateColorCodes('&', input);
@@ -22,6 +26,10 @@ public class Chat {
     }
 
 
+    /**
+     * @param message message
+     * @return message with hex color
+     */
     private static String translateHexColorCodes(String message) {
 
         final Pattern hexPattern = Pattern.compile("&#" + "([A-Fa-f0-9]{6})" + "");

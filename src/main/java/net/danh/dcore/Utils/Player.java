@@ -8,29 +8,51 @@ import java.util.List;
 
 public class Player {
 
+    /**
+     * @param p Player
+     * @param msg Message... send to player
+     */
     public static void sendPlayerMessage(org.bukkit.entity.Player p, String... msg) {
         for (String string : msg) {
             p.sendMessage(Chat.colorize(string));
         }
     }
 
+    /**
+     * @param p Player
+     * @param msg List Message send to player
+     */
     public static void sendPlayerMessage(org.bukkit.entity.Player p, List<String> msg) {
         for (String string : msg) {
             p.sendMessage(Chat.colorize(string));
         }
     }
+
+    /**
+     * @param c ConsoleCommandSender
+     * @param msg Message... send to console without [DCore]
+     */
     public static void sendConsoleMessage(ConsoleCommandSender c, String... msg) {
         for (String string : msg) {
             c.sendMessage(Chat.colorize(string));
         }
     }
 
+    /**
+     * @param c ConsoleCommandSender
+     * @param msg List Message send to console without [DCore]
+     */
     public static void sendConsoleMessage(ConsoleCommandSender c, List<String> msg) {
         for (String string : msg) {
             c.sendMessage(Chat.colorize(string));
         }
     }
 
+    /**
+     * @param p Player
+     * @param type CHAT, ACTION_BAR
+     * @param msg Message send to player
+     */
     public static void sendPlayerMessageType(org.bukkit.entity.Player p, String type, String msg) {
         if (type != null) {
             p.spigot().sendMessage(ChatMessageType.valueOf(type), new TranslatableComponent(Chat.colorize(msg)));

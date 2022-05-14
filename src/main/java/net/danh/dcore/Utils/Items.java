@@ -11,6 +11,10 @@ import java.util.List;
 
 public class Items {
 
+    /**
+     * @param input List<Lore>
+     * @return input with color code
+     */
     public static List<String> Lore(List<String> input) {
         List<String> output = new ArrayList<>();
         for (String string : input) {
@@ -19,6 +23,16 @@ public class Items {
         return output;
     }
 
+    /**
+     * @param material Material 1.13+
+     * @param amount int
+     * @param glow true/false
+     * @param HideFlag true/false
+     * @param Unbreakable true/false
+     * @param name Item name
+     * @param lore Item lore
+     * @return ItemStack
+     */
     public static ItemStack makeItem(Material material, Integer amount, Boolean glow, Boolean HideFlag, Boolean Unbreakable, String name, List<String> lore) {
         ItemStack itemStack = new ItemStack(material, amount);
         ItemMeta itemMeta = itemStack.getItemMeta();
