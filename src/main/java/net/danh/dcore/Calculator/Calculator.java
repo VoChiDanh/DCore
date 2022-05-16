@@ -7,6 +7,17 @@ import java.util.List;
  * @version 1.1
  */
 public class Calculator {
+    private static boolean isExpresstion(String s) {
+        s = s.replaceAll(" ", "");
+        boolean is = true;
+        for (int i = 0; i < s.length(); i++) {
+            if (!String.valueOf(s.charAt(i)).matches("[0-9+\\-*/%^@{}()]")) {
+                is = false;
+                break;
+            }
+        }
+        return is;
+    }
 
     private static double parsefirst(String s) {
         s = s.replaceAll(" ", "");
@@ -135,83 +146,147 @@ public class Calculator {
         return result;
     }
 
-    /**
-     * @param Expression The calculator, number + number | number  - number | number *  number | number / number | number%number | number^number | @{number}
-     * @param Demical    the number after .
-     * @return the answer of calculator
-     */
-    public static String calculator(String Expression, int Demical) {
-        boolean b = Expression.contains("*") || Expression.contains("/") || Expression.contains("%");
-        if (Demical <= -1) {
-            if (!Expression.contains("(") && !Expression.contains(")")) {
-                if (Expression.contains("^") || Expression.contains("@")) {
-                    return String.valueOf(parsefirst(Expression));
-                } else if (b) {
-                    return String.valueOf(parsesecond(Expression));
-                } else if (Expression.contains("+") || Expression.contains("-")) {
-                    return String.valueOf(parsethird(Expression));
+    private static String calculator(String Expression, int Demical) {
+        if (isExpresstion(Expression)) {
+            if (Demical <= -1) {
+                if (!Expression.contains("(") && !Expression.contains(")")) {
+                    if (Expression.startsWith("@{")) {
+                        if (Expression.contains("^") || Expression.contains("@{")) {
+                            return String.valueOf(parsefirst(Expression));
+                        } else if (Expression.contains("*") || Expression.contains("/") || Expression.contains("%")) {
+                            return String.valueOf(parsesecond(Expression));
+                        } else if (Expression.contains("+") || Expression.contains("-")) {
+                            return String.valueOf(parsethird(Expression));
+                        } else {
+                            return Expression;
+                        }
+                    } else {
+                        Expression = Expression.replaceAll(" ", "");
+                        List<Integer> open = new ArrayList<>();
+                        List<Integer> close = new ArrayList<>();
+                        List<String> es = new ArrayList<>();
+                        for (int i = 0; i < Expression.length(); i++) {
+                            if (Expression.charAt(i) == '{') open.add(i);
+                        }
+                        for (int i = Expression.length() - 1; i >= 0; i--) {
+                            if (Expression.charAt(i) == '}') close.add(i);
+                        }
+                        if (open.size() != close.size()) return Expression;
+                        else {
+                            for (int i = 0; i < open.size(); i++) {
+                                if (!Expression.substring(open.get(i) + 1, close.get(i)).contains("@{") && !Expression.substring(open.get(i) + 1, close.get(i)).contains("}"))
+                                    es.add(Expression.substring(open.get(i) + 1, close.get(i)));
+                                else es.add(calculator(Expression.substring(open.get(i) + 1, close.get(i)), Demical));
+                            }
+                        }
+                        for (String e : es) {
+                            Expression = Expression.replace("@{" + e + "}", calculator(e, Demical));
+                        }
+                        if (Expression.contains("+") || Expression.contains("-")) {
+                            return String.valueOf(parsethird(Expression));
+                        } else if (Expression.contains("*") || Expression.contains("/") || Expression.contains("%")) {
+                            return String.valueOf(parsesecond(Expression));
+                        } else if (Expression.contains("^") || Expression.contains("@{")) {
+                            return String.valueOf(parsefirst(Expression));
+                        } else {
+                            return Expression;
+                        }
+                    }
                 } else {
-                    return Expression;
+                    Expression = Expression.replaceAll(" ", "");
+                    List<Integer> open = new ArrayList<>();
+                    List<Integer> close = new ArrayList<>();
+                    List<String> es = new ArrayList<>();
+                    for (int i = 0; i < Expression.length(); i++) {
+                        if (Expression.charAt(i) == '(') open.add(i);
+                    }
+                    for (int i = Expression.length() - 1; i >= 0; i--) {
+                        if (Expression.charAt(i) == ')') close.add(i);
+                    }
+                    if (open.size() != close.size()) return Expression;
+                    else {
+                        for (int i = 0; i < open.size(); i++) {
+                            if (!Expression.substring(open.get(i) + 1, close.get(i)).contains("(") && !Expression.substring(open.get(i) + 1, close.get(i)).contains(")"))
+                                es.add(Expression.substring(open.get(i) + 1, close.get(i)));
+                            else es.add(calculator(Expression.substring(open.get(i) + 1, close.get(i)), Demical));
+                        }
+                    }
+                    for (String e : es) {
+                        Expression = Expression.replace("(" + e + ")", calculator("@{" + e + "}", Demical));
+                    }
+                    return calculator(Expression, Demical);
                 }
             } else {
-                Expression = Expression.replaceAll(" ", "");
-                List<Integer> open = new ArrayList<>();
-                List<Integer> close = new ArrayList<>();
-                List<String> es = new ArrayList<>();
-                for (int i = 0; i < Expression.length(); i++) {
-                    if (Expression.charAt(i) == '(') open.add(i);
-                }
-                for (int i = Expression.length() - 1; i >= 0; i--) {
-                    if (Expression.charAt(i) == ')') close.add(i);
-                }
-                if (open.size() != close.size()) return Expression;
-                else {
-                    for (int i = 0; i < open.size(); i++) {
-                        if (!Expression.substring(open.get(i) + 1, close.get(i)).contains("(") && !Expression.substring(open.get(i) + 1, close.get(i)).contains(")"))
-                            es.add(Expression.substring(open.get(i) + 1, close.get(i)));
-                        else es.add(calculator(Expression.substring(open.get(i) + 1, close.get(i)), Demical));
+                if (!Expression.contains("(") && !Expression.contains(")")) {
+                    if (Expression.startsWith("@{")) {
+                        if (Expression.contains("^") || Expression.contains("@{")) {
+                            return String.format("%." + Demical + "f", parsefirst(Expression));
+                        } else if (Expression.contains("*") || Expression.contains("/") || Expression.contains("%")) {
+                            return String.format("%." + Demical + "f", parsesecond(Expression));
+                        } else if (Expression.contains("+") || Expression.contains("-")) {
+                            return String.format("%." + Demical + "f", parsethird(Expression));
+                        } else {
+                            return Expression;
+                        }
+                    } else {
+                        Expression = Expression.replaceAll(" ", "");
+                        List<Integer> open = new ArrayList<>();
+                        List<Integer> close = new ArrayList<>();
+                        List<String> es = new ArrayList<>();
+                        for (int i = 0; i < Expression.length(); i++) {
+                            if (Expression.charAt(i) == '{') open.add(i);
+                        }
+                        for (int i = Expression.length() - 1; i >= 0; i--) {
+                            if (Expression.charAt(i) == '}') close.add(i);
+                        }
+                        if (open.size() != close.size()) return Expression;
+                        else {
+                            for (int i = 0; i < open.size(); i++) {
+                                if (!Expression.substring(open.get(i) + 1, close.get(i)).contains("@{") && !Expression.substring(open.get(i) + 1, close.get(i)).contains("}"))
+                                    es.add(Expression.substring(open.get(i) + 1, close.get(i)));
+                                else es.add(calculator(Expression.substring(open.get(i) + 1, close.get(i)), Demical));
+                            }
+                        }
+                        for (String e : es) {
+                            Expression = Expression.replace("@{" + e + "}", calculator("@{" + e + "}", Demical));
+                        }
+                        if (Expression.contains("+") || Expression.contains("-")) {
+                            return String.format("%." + Demical + "f", parsethird(Expression));
+                        } else if (Expression.contains("*") || Expression.contains("/") || Expression.contains("%")) {
+                            return String.format("%." + Demical + "f", parsesecond(Expression));
+                        } else if (Expression.contains("^") || Expression.contains("@{")) {
+                            return String.format("%." + Demical + "f", parsefirst(Expression));
+                        } else {
+                            return Expression;
+                        }
                     }
+                } else {
+                    Expression = Expression.replaceAll(" ", "");
+                    List<Integer> open = new ArrayList<>();
+                    List<Integer> close = new ArrayList<>();
+                    List<String> es = new ArrayList<>();
+                    for (int i = 0; i < Expression.length(); i++) {
+                        if (Expression.charAt(i) == '(') open.add(i);
+                    }
+                    for (int i = Expression.length() - 1; i >= 0; i--) {
+                        if (Expression.charAt(i) == ')') close.add(i);
+                    }
+                    if (open.size() != close.size()) return Expression;
+                    else {
+                        for (int i = 0; i < open.size(); i++) {
+                            if (!Expression.substring(open.get(i) + 1, close.get(i)).contains("(") && !Expression.substring(open.get(i) + 1, close.get(i)).contains(")"))
+                                es.add(Expression.substring(open.get(i) + 1, close.get(i)));
+                            else es.add(calculator(Expression.substring(open.get(i) + 1, close.get(i)), Demical));
+                        }
+                    }
+                    for (String e : es) {
+                        Expression = Expression.replace("(" + e + ")", calculator(e, Demical));
+                    }
+                    return calculator(Expression, Demical);
                 }
-                for (String e : es) {
-                    Expression = Expression.replace("(" + e + ")", calculator(e, Demical));
-                }
-                return calculator(Expression, Demical);
             }
         } else {
-            if (!Expression.contains("(") && !Expression.contains(")")) {
-                if (Expression.contains("^") || Expression.contains("@")) {
-                    return String.format("%." + Demical + "f", parsefirst(Expression));
-                } else if (b) {
-                    return String.format("%." + Demical + "f", parsesecond(Expression));
-                } else if (Expression.contains("+") || Expression.contains("-")) {
-                    return String.format("%." + Demical + "f", parsethird(Expression));
-                } else {
-                    return Expression;
-                }
-            } else {
-                Expression = Expression.replaceAll(" ", "");
-                List<Integer> open = new ArrayList<>();
-                List<Integer> close = new ArrayList<>();
-                List<String> es = new ArrayList<>();
-                for (int i = 0; i < Expression.length(); i++) {
-                    if (Expression.charAt(i) == '(') open.add(i);
-                }
-                for (int i = Expression.length() - 1; i >= 0; i--) {
-                    if (Expression.charAt(i) == ')') close.add(i);
-                }
-                if (open.size() != close.size()) return Expression;
-                else {
-                    for (int i = 0; i < open.size(); i++) {
-                        if (!Expression.substring(open.get(i) + 1, close.get(i)).contains("(") && !Expression.substring(open.get(i) + 1, close.get(i)).contains(")"))
-                            es.add(Expression.substring(open.get(i) + 1, close.get(i)));
-                        else es.add(calculator(Expression.substring(open.get(i) + 1, close.get(i)), Demical));
-                    }
-                }
-                for (String e : es) {
-                    Expression = Expression.replace("(" + e + ")", calculator(e, Demical));
-                }
-                return calculator(Expression, Demical);
-            }
+            return "Couldn't find any expressions";
         }
     }
 }
