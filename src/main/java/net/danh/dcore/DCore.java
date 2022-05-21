@@ -37,13 +37,10 @@ public class DCore {
      * @param core Main of your plugins
      */
     public static void RegisterDCore(JavaPlugin core) {
-        if (core.getServer().getPluginManager().getPlugin("ProtocolLib") == null) {
-            dCoreLog("&cYou need ProtocolLib to use plugin " + core.getDescription().getName());
-            core.getServer().getPluginManager().disablePlugin(core);
-            return;
+        if (core.getServer().getPluginManager().getPlugin("ProtocolLib") != null) {
+            ProtocolManager protocolManager = ProtocolLibrary.getProtocolManager();
+            RemoveDP(protocolManager, core);
         }
-        ProtocolManager protocolManager = ProtocolLibrary.getProtocolManager();
-        RemoveDP(protocolManager, core);
         dCoreLog("&3" + core.getDescription().getName() + " is using DCore " + getDCoreVersion());
     }
 
