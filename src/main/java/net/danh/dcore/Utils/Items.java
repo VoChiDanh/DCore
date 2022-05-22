@@ -253,7 +253,232 @@ public class Items {
         return itemStack;
     }
 
-    public static boolean hasKey(JavaPlugin core, ItemStack is, String targetKey, PersistentDataType<String, String> type) {
+    /**
+     * @param core        Plugin
+     * @param key         String
+     * @param type        PersistentDataType
+     * @param value       Double
+     * @param material    Material
+     * @param amount      int
+     * @param glow        true/false
+     * @param HideFlag    true/false
+     * @param Unbreakable true/false
+     * @param name        Item name
+     * @param lore        Item lore
+     * @return ItemStack
+     */
+    public static ItemStack makeItem(JavaPlugin core, String key, PersistentDataType<Double, Double> type, Double value, Material material, Integer amount, Boolean glow, Boolean HideFlag, Boolean Unbreakable, String name, List<String> lore) {
+        ItemStack itemStack = new ItemStack(material, amount);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        NamespacedKey namespacedKey = new NamespacedKey(core, key);
+        Objects.requireNonNull(itemMeta).getPersistentDataContainer().set(namespacedKey, type, value);
+        if (name != null) {
+            itemMeta.setDisplayName(Chat.colorize(name));
+        }
+        if (lore != null) {
+            itemMeta.setLore(Lore(lore));
+        }
+        if (glow) {
+            itemMeta.addEnchant(Enchantment.DURABILITY, 1, true);
+            itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        }
+        if (HideFlag) {
+            itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+            itemMeta.addItemFlags(ItemFlag.HIDE_DESTROYS);
+            itemMeta.addItemFlags(ItemFlag.HIDE_PLACED_ON);
+            itemMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+            itemMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+        }
+        if (Unbreakable) {
+            itemMeta.setUnbreakable(true);
+        }
+        itemStack.setItemMeta(itemMeta);
+
+        return itemStack;
+    }
+
+    /**
+     * @param core        Plugin
+     * @param key         String
+     * @param type        PersistentDataType
+     * @param value       Double
+     * @param material    Material
+     * @param amount      int
+     * @param glow        true/false
+     * @param HideFlag    true/false
+     * @param Unbreakable true/false
+     * @param name        Item name
+     * @param lore        Item lore
+     * @return ItemStack
+     */
+    public static ItemStack makeItem(JavaPlugin core, String key, PersistentDataType<Double, Double> type, Double value, Material material, Integer amount, Boolean glow, Boolean HideFlag, Boolean Unbreakable, String name, String... lore) {
+        ItemStack itemStack = new ItemStack(material, amount);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        NamespacedKey namespacedKey = new NamespacedKey(core, key);
+        Objects.requireNonNull(itemMeta).getPersistentDataContainer().set(namespacedKey, type, value);
+        if (name != null) {
+            itemMeta.setDisplayName(Chat.colorize(name));
+        }
+        if (lore != null) {
+            List<String> l = new ArrayList<>();
+            for (String lores : lore) {
+                l.add(Chat.colorize(lores));
+            }
+            itemMeta.setLore(Lore(l));
+        }
+        if (glow) {
+            itemMeta.addEnchant(Enchantment.DURABILITY, 1, true);
+            itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        }
+        if (HideFlag) {
+            itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+            itemMeta.addItemFlags(ItemFlag.HIDE_DESTROYS);
+            itemMeta.addItemFlags(ItemFlag.HIDE_PLACED_ON);
+            itemMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+            itemMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+        }
+        if (Unbreakable) {
+            itemMeta.setUnbreakable(true);
+        }
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
+    }
+
+    /**
+     * @param core        Plugin
+     * @param key         String
+     * @param type        PersistentDataType
+     * @param value       Integer
+     * @param material    Material
+     * @param amount      int
+     * @param glow        true/false
+     * @param HideFlag    true/false
+     * @param Unbreakable true/false
+     * @param name        Item name
+     * @param lore        Item lore
+     * @return ItemStack
+     */
+    public static ItemStack makeItem(JavaPlugin core, String key, PersistentDataType<Integer, Integer> type, Integer value, Material material, Integer amount, Boolean glow, Boolean HideFlag, Boolean Unbreakable, String name, List<String> lore) {
+        ItemStack itemStack = new ItemStack(material, amount);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        NamespacedKey namespacedKey = new NamespacedKey(core, key);
+        Objects.requireNonNull(itemMeta).getPersistentDataContainer().set(namespacedKey, type, value);
+        if (name != null) {
+            itemMeta.setDisplayName(Chat.colorize(name));
+        }
+        if (lore != null) {
+            itemMeta.setLore(Lore(lore));
+        }
+        if (glow) {
+            itemMeta.addEnchant(Enchantment.DURABILITY, 1, true);
+            itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        }
+        if (HideFlag) {
+            itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+            itemMeta.addItemFlags(ItemFlag.HIDE_DESTROYS);
+            itemMeta.addItemFlags(ItemFlag.HIDE_PLACED_ON);
+            itemMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+            itemMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+        }
+        if (Unbreakable) {
+            itemMeta.setUnbreakable(true);
+        }
+        itemStack.setItemMeta(itemMeta);
+
+        return itemStack;
+    }
+
+    /**
+     * @param core        Plugin
+     * @param key         String
+     * @param type        PersistentDataType
+     * @param value       Integer
+     * @param material    Material
+     * @param amount      int
+     * @param glow        true/false
+     * @param HideFlag    true/false
+     * @param Unbreakable true/false
+     * @param name        Item name
+     * @param lore        Item lore
+     * @return ItemStack
+     */
+    public static ItemStack makeItem(JavaPlugin core, String key, PersistentDataType<Integer, Integer> type, Integer value, Material material, Integer amount, Boolean glow, Boolean HideFlag, Boolean Unbreakable, String name, String... lore) {
+        ItemStack itemStack = new ItemStack(material, amount);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        NamespacedKey namespacedKey = new NamespacedKey(core, key);
+        Objects.requireNonNull(itemMeta).getPersistentDataContainer().set(namespacedKey, type, value);
+        if (name != null) {
+            itemMeta.setDisplayName(Chat.colorize(name));
+        }
+        if (lore != null) {
+            List<String> l = new ArrayList<>();
+            for (String lores : lore) {
+                l.add(Chat.colorize(lores));
+            }
+            itemMeta.setLore(Lore(l));
+        }
+        if (glow) {
+            itemMeta.addEnchant(Enchantment.DURABILITY, 1, true);
+            itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        }
+        if (HideFlag) {
+            itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+            itemMeta.addItemFlags(ItemFlag.HIDE_DESTROYS);
+            itemMeta.addItemFlags(ItemFlag.HIDE_PLACED_ON);
+            itemMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+            itemMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+        }
+        if (Unbreakable) {
+            itemMeta.setUnbreakable(true);
+        }
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
+    }
+
+    /**
+     * @param core      Plugin
+     * @param is        ItemStack
+     * @param targetKey String
+     * @param type      PersistentDataType
+     * @return true/false
+     */
+    public static boolean hasKeyString(JavaPlugin core, ItemStack is, String targetKey, PersistentDataType<String, String> type) {
+        NamespacedKey key = new NamespacedKey(core, targetKey);
+        ItemMeta itemMeta = is.getItemMeta();
+        PersistentDataContainer container = Objects.requireNonNull(itemMeta).getPersistentDataContainer();
+        boolean foundKey = false;
+        if (container.has(key, type)) {
+            foundKey = container.get(key, type) != null;
+        }
+        return foundKey;
+    }
+
+    /**
+     * @param core      Plugin
+     * @param is        ItemStack
+     * @param targetKey String
+     * @param type      PersistentDataType
+     * @return true/false
+     */
+    public static boolean hasKeyDouble(JavaPlugin core, ItemStack is, String targetKey, PersistentDataType<Double, Double> type) {
+        NamespacedKey key = new NamespacedKey(core, targetKey);
+        ItemMeta itemMeta = is.getItemMeta();
+        PersistentDataContainer container = Objects.requireNonNull(itemMeta).getPersistentDataContainer();
+        boolean foundKey = false;
+        if (container.has(key, type)) {
+            foundKey = container.get(key, type) != null;
+        }
+        return foundKey;
+    }
+
+    /**
+     * @param core      Plugin
+     * @param is        ItemStack
+     * @param targetKey String
+     * @param type      PersistentDataType
+     * @return true/false
+     */
+    public static boolean hasKeyInteger(JavaPlugin core, ItemStack is, String targetKey, PersistentDataType<Integer, Integer> type) {
         NamespacedKey key = new NamespacedKey(core, targetKey);
         ItemMeta itemMeta = is.getItemMeta();
         PersistentDataContainer container = Objects.requireNonNull(itemMeta).getPersistentDataContainer();
