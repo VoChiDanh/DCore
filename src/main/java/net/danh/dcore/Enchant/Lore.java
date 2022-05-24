@@ -10,13 +10,28 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static net.danh.dcore.Utils.Player.sendPlayerMessage;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * @version 1.2
  */
 public class Lore {
+
+    private static String formatLevel(Integer level) {
+        int[] values = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        String[] romanLiterals = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+
+        AtomicReference<StringBuilder> roman = new AtomicReference<>(new StringBuilder());
+
+        for (int i = 0; i < values.length; i++) {
+            while (level >= values[i]) {
+                level -= values[i];
+                roman.get().append(romanLiterals[i]);
+            }
+        }
+        return String.valueOf(level);
+    }
+
     /**
      * @param core      Plugin
      * @param key       key
@@ -43,7 +58,7 @@ public class Lore {
                 }
             }
             itemlores = meta.getLore();
-            itemlores.set(line, ChatColor.GRAY + lore + " " + level);
+            itemlores.set(line, ChatColor.GRAY + lore + " " + formatLevel(level));
         }
         meta.setLore(itemlores);
         meta.getPersistentDataContainer().set(new NamespacedKey(core, key), PersistentDataType.INTEGER, level);
