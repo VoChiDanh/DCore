@@ -54,6 +54,8 @@ public class Lore {
      * @param level     level
      */
     public static void addEnchant(JavaPlugin core, String key, Player p, ItemStack itemStack, String lore, Integer level) {
+        removeLore(itemStack, lore);
+        dCoreLog("[AddEnchant] Remove Old Lore");
         ItemMeta meta = itemStack.getItemMeta();
         if (meta == null) {
             sendPlayerMessage(p, "&cKhông thề phù phép vật phẩm này");
@@ -65,8 +67,6 @@ public class Lore {
             return;
         }
         dCoreLog("[AddEnchant] Lore not null");
-        removeLore(itemStack, lore);
-        dCoreLog("[AddEnchant] Remove Old Lore");
         List<String> itemlores = new ArrayList<>();
         if (meta.hasLore()) {
             itemlores = meta.getLore();
