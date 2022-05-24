@@ -8,7 +8,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,11 +34,11 @@ public class Lore {
         for (int i = 0; i < meta.getLore().size(); i++) {
             if (meta.getLore().get(i).startsWith(ChatColor.GRAY + lore)) {
                 line = i;
+                meta.getLore().remove(line);
                 dCoreLog("[RemoveLore] " + line);
                 break;
             }
         }
-        meta.getLore().remove(line);
         meta.setLore(meta.getLore());
         dCoreLog("[RemoveLore] Removed");
         itemStack.setItemMeta(meta);
@@ -73,7 +72,7 @@ public class Lore {
             itemlores = meta.getLore();
         }
         dCoreLog("[AddEnchant] Get new lore");
-        itemlores.add(ChatColor.GRAY + lore);
+        itemlores.add(ChatColor.GRAY + lore + " " + level);
         dCoreLog("[AddEnchant] Add new lore");
         meta.setLore(itemlores);
         dCoreLog("[AddEnchant] Set lore");
