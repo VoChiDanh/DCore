@@ -67,20 +67,19 @@ public class Lore {
         dCoreLog("[AddEnchant] Lore not null");
         List<String> itemlores = new ArrayList<>();
         if (meta.hasLore()) {
-            int line;
+            int line = 0;
             for (int i = 0; i < meta.getLore().size(); i++) {
                 if (meta.getLore().get(i).startsWith(ChatColor.GRAY + lore)) {
                     line = i;
-                    meta.getLore().remove(line);
                     dCoreLog("[RemoveLore] " + line);
                     break;
                 }
             }
             itemlores = meta.getLore();
+            dCoreLog("[AddEnchant] Get new lore");
+            itemlores.set(line, ChatColor.GRAY + lore + " " + level);
+            dCoreLog("[AddEnchant] Add new lore");
         }
-        dCoreLog("[AddEnchant] Get new lore");
-        itemlores.add(ChatColor.GRAY + lore + " " + level);
-        dCoreLog("[AddEnchant] Add new lore");
         meta.setLore(itemlores);
         dCoreLog("[AddEnchant] Set lore");
         meta.getPersistentDataContainer().set(new NamespacedKey(core, key), PersistentDataType.INTEGER, level);
