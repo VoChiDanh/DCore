@@ -1,5 +1,6 @@
 package net.danh.dcore.Enchant;
 
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -32,7 +33,7 @@ public class Lore {
         dCoreLog("[RemoveLore] Lore not null");
         int line = 0;
         for (int i = 0; i < meta.getLore().size(); i++) {
-            if (meta.getLore().get(i).startsWith(Color.GRAY + lore)) {
+            if (meta.getLore().get(i).startsWith(ChatColor.GRAY + lore)) {
                 line = i;
                 dCoreLog("[RemoveLore] " + line);
                 break;
@@ -72,7 +73,7 @@ public class Lore {
             itemlores = meta.getLore();
         }
         dCoreLog("[AddEnchant] Get new lore");
-        itemlores.add(Color.GRAY + lore);
+        itemlores.add(ChatColor.GRAY + lore);
         dCoreLog("[AddEnchant] Add new lore");
         meta.setLore(itemlores);
         dCoreLog("[AddEnchant] Set lore");
