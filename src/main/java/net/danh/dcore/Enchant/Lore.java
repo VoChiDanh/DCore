@@ -30,7 +30,7 @@ public class Lore {
             return;
         }
         dCoreLog("[RemoveLore] Lore not null");
-        int line = 0;
+        int line;
         for (int i = 0; i < meta.getLore().size(); i++) {
             if (meta.getLore().get(i).startsWith(ChatColor.GRAY + lore)) {
                 line = i;
@@ -54,8 +54,6 @@ public class Lore {
      * @param level     level
      */
     public static void addEnchant(JavaPlugin core, String key, Player p, ItemStack itemStack, String lore, Integer level) {
-        removeLore(itemStack, lore);
-        dCoreLog("[AddEnchant] Remove Old Lore");
         ItemMeta meta = itemStack.getItemMeta();
         if (meta == null) {
             sendPlayerMessage(p, "&cKhông thề phù phép vật phẩm này");
@@ -69,6 +67,15 @@ public class Lore {
         dCoreLog("[AddEnchant] Lore not null");
         List<String> itemlores = new ArrayList<>();
         if (meta.hasLore()) {
+            int line;
+            for (int i = 0; i < meta.getLore().size(); i++) {
+                if (meta.getLore().get(i).startsWith(ChatColor.GRAY + lore)) {
+                    line = i;
+                    meta.getLore().remove(line);
+                    dCoreLog("[RemoveLore] " + line);
+                    break;
+                }
+            }
             itemlores = meta.getLore();
         }
         dCoreLog("[AddEnchant] Get new lore");
