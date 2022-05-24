@@ -11,6 +11,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.ArrayList;
 import java.util.List;
 
+import static net.danh.dcore.Utils.Player.sendPlayerMessage;
+
 /**
  * @version 1.2
  */
@@ -35,15 +37,14 @@ public class Lore {
         if (meta.hasLore()) {
             int line = 0;
             for (int i = 0; i < meta.getLore().size(); i++) {
-                if (meta.getLore().get(i).startsWith(ChatColor.GRAY + lore)) {
+                if (meta.getLore().get(i).startsWith(ChatColor.GRAY + lore) || meta.getLore().get(i).startsWith(ChatColor.DARK_GRAY + lore)) {
                     line = i;
                     break;
                 }
             }
             itemlores = meta.getLore();
-            itemlores.remove(line);
+            itemlores.set(line, ChatColor.GRAY + lore + " " + level);
         }
-        itemlores.add(ChatColor.GRAY + lore + " " + level);
         meta.setLore(itemlores);
         meta.getPersistentDataContainer().set(new NamespacedKey(core, key), PersistentDataType.INTEGER, level);
         itemStack.setItemMeta(meta);
