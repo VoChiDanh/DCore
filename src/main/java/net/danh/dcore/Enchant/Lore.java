@@ -1,6 +1,5 @@
 package net.danh.dcore.Enchant;
 
-import net.danh.dcore.Utils.Chat;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -8,9 +7,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static net.danh.dcore.DCore.dCoreLog;
 import static net.danh.dcore.Utils.Player.sendPlayerMessage;
 
 public class Lore {
@@ -24,19 +25,24 @@ public class Lore {
         if (meta == null) {
             return;
         }
+        dCoreLog("[RemoveLore] Meta not null");
         if (meta.getLore() == null) {
             return;
         }
+        dCoreLog("[RemoveLore] Lore not null");
         int line = 0;
         for (int i = 0; i < meta.getLore().size(); i++) {
-            if (meta.getLore().get(i).startsWith(Chat.colorize(lore))) {
+            if (meta.getLore().get(i).startsWith(Color.GRAY + lore)) {
                 line = i;
+                dCoreLog("[RemoveLore] " + line);
                 break;
             }
         }
-
         meta.getLore().remove(line);
+        meta.setLore(meta.getLore());
+        dCoreLog("[RemoveLore] Removed");
         itemStack.setItemMeta(meta);
+        dCoreLog("[RemoveLore] Done");
     }
 
     /**
@@ -53,19 +59,26 @@ public class Lore {
             sendPlayerMessage(p, "&cKhông thề phù phép vật phẩm này");
             return;
         }
+        dCoreLog("[AddEnchant] Meta not null");
         if (meta.getLore() == null) {
             sendPlayerMessage(p, "&cKhông thề phù phép vật phẩm này");
             return;
         }
+        dCoreLog("[AddEnchant] Lore not null");
         removeLore(itemStack, lore);
+        dCoreLog("[AddEnchant] Remove Old Lore");
         List<String> itemlores = new ArrayList<>();
         if (meta.hasLore()) {
             itemlores = meta.getLore();
         }
-        itemlores.add(Chat.colorize(lore + " " + level));
+        dCoreLog("[AddEnchant] Get new lore");
+        itemlores.add(Color.GRAY + lore);
+        dCoreLog("[AddEnchant] Add new lore");
         meta.setLore(itemlores);
+        dCoreLog("[AddEnchant] Set lore");
         meta.getPersistentDataContainer().set(new NamespacedKey(core, key), PersistentDataType.INTEGER, level);
         itemStack.setItemMeta(meta);
+        dCoreLog("[AddEnchant] Done");
         sendPlayerMessage(p, "&aPhù phép thành công enchant " + lore + " &cLv." + level);
     }
 
