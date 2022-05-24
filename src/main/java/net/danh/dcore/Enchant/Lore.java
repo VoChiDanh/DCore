@@ -8,7 +8,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -29,7 +28,7 @@ public class Lore {
                 roman.get().append(romanLiterals[i]);
             }
         }
-        return String.valueOf(level);
+        return roman.toString();
     }
 
     /**
@@ -48,18 +47,16 @@ public class Lore {
         if (meta.getLore() == null) {
             return;
         }
-        List<String> itemlores = new ArrayList<>();
-        if (meta.hasLore()) {
-            int line = 0;
-            for (int i = 0; i < meta.getLore().size(); i++) {
-                if (meta.getLore().get(i).startsWith(ChatColor.GRAY + lore) || meta.getLore().get(i).startsWith(ChatColor.DARK_GRAY + lore)) {
-                    line = i;
-                    break;
-                }
+        List<String> itemlores;
+        int line = 0;
+        for (int i = 0; i < meta.getLore().size(); i++) {
+            if (meta.getLore().get(i).startsWith(ChatColor.GRAY + lore) || meta.getLore().get(i).startsWith(ChatColor.DARK_GRAY + lore)) {
+                line = i;
+                break;
             }
-            itemlores = meta.getLore();
-            itemlores.set(line, ChatColor.GRAY + lore + " " + formatLevel(level));
         }
+        itemlores = meta.getLore();
+        itemlores.set(line, ChatColor.GRAY + lore + " " + formatLevel(level));
         meta.setLore(itemlores);
         meta.getPersistentDataContainer().set(new NamespacedKey(core, key), PersistentDataType.INTEGER, level);
         itemStack.setItemMeta(meta);
