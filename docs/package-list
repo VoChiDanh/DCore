@@ -1,6 +1,7 @@
 net.danh.dcore
 net.danh.dcore.Calculator
 net.danh.dcore.Commands
+net.danh.dcore.Enchant
 net.danh.dcore.NMS
 net.danh.dcore.Random
 net.danh.dcore.Utils
