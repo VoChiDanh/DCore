@@ -76,10 +76,11 @@ public class Lore {
                 }
             }
             itemlores = meta.getLore();
-            dCoreLog("[AddEnchant] Get new lore");
-            itemlores.set(line, ChatColor.GRAY + lore + " " + level);
-            dCoreLog("[AddEnchant] Add new lore");
+            itemlores.remove(line);
         }
+        dCoreLog("[AddEnchant] Get new lore");
+        itemlores.add(ChatColor.GRAY + lore + " " + level);
+        dCoreLog("[AddEnchant] Add new lore");
         meta.setLore(itemlores);
         dCoreLog("[AddEnchant] Set lore");
         meta.getPersistentDataContainer().set(new NamespacedKey(core, key), PersistentDataType.INTEGER, level);
