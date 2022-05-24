@@ -21,7 +21,7 @@ public class DCore {
      * @return API Version
      */
     public static String getDCoreVersion() {
-        return "v1.2-SNAPSHOT";
+        return "v1.2";
     }
 
     /**

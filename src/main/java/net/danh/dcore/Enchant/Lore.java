@@ -11,43 +11,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.ArrayList;
 import java.util.List;
 
-import static net.danh.dcore.DCore.dCoreLog;
-import static net.danh.dcore.Utils.Player.sendPlayerMessage;
-
+/**
+ * @version 1.2
+ */
 public class Lore {
-
-    /**
-     * @param itemStack Item
-     * @param lore      Lore
-     */
-    private static void removeLore(ItemStack itemStack, String lore) {
-        ItemMeta meta = itemStack.getItemMeta();
-        if (meta == null) {
-            return;
-        }
-        dCoreLog("[RemoveLore] Meta not null");
-        if (meta.getLore() == null) {
-            return;
-        }
-        dCoreLog("[RemoveLore] Lore not null");
-        int line;
-        for (int i = 0; i < meta.getLore().size(); i++) {
-            if (meta.getLore().get(i).startsWith(ChatColor.GRAY + lore)) {
-                line = i;
-                meta.getLore().remove(line);
-                dCoreLog("[RemoveLore] " + line);
-                break;
-            }
-        }
-        meta.setLore(meta.getLore());
-        dCoreLog("[RemoveLore] Removed");
-        itemStack.setItemMeta(meta);
-        dCoreLog("[RemoveLore] Done");
-    }
-
     /**
      * @param core      Plugin
-     * @param key       key (upper_case_plz)
+     * @param key       key
      * @param p         Player
      * @param itemStack Item
      * @param lore      lore
@@ -56,42 +26,32 @@ public class Lore {
     public static void addEnchant(JavaPlugin core, String key, Player p, ItemStack itemStack, String lore, Integer level) {
         ItemMeta meta = itemStack.getItemMeta();
         if (meta == null) {
-            sendPlayerMessage(p, "&cKhông thề phù phép vật phẩm này");
             return;
         }
-        dCoreLog("[AddEnchant] Meta not null");
         if (meta.getLore() == null) {
-            sendPlayerMessage(p, "&cKhông thề phù phép vật phẩm này");
             return;
         }
-        dCoreLog("[AddEnchant] Lore not null");
         List<String> itemlores = new ArrayList<>();
         if (meta.hasLore()) {
             int line = 0;
             for (int i = 0; i < meta.getLore().size(); i++) {
                 if (meta.getLore().get(i).startsWith(ChatColor.GRAY + lore)) {
                     line = i;
-                    dCoreLog("[RemoveLore] " + line);
                     break;
                 }
             }
             itemlores = meta.getLore();
             itemlores.remove(line);
         }
-        dCoreLog("[AddEnchant] Get new lore");
         itemlores.add(ChatColor.GRAY + lore + " " + level);
-        dCoreLog("[AddEnchant] Add new lore");
         meta.setLore(itemlores);
-        dCoreLog("[AddEnchant] Set lore");
         meta.getPersistentDataContainer().set(new NamespacedKey(core, key), PersistentDataType.INTEGER, level);
         itemStack.setItemMeta(meta);
-        dCoreLog("[AddEnchant] Done");
-        sendPlayerMessage(p, "&aPhù phép thành công enchant " + lore + " &cLv." + level);
     }
 
     /**
      * @param core      Plugin
-     * @param key       key (upper_case_plz)
+     * @param key       key
      * @param itemStack item
      * @return true/false
      */
@@ -108,7 +68,7 @@ public class Lore {
 
     /**
      * @param core      Plugin
-     * @param key       key (upper_case_plz)
+     * @param key       key
      * @param itemStack item
      * @return number
      */
