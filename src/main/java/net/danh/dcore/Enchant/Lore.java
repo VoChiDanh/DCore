@@ -53,14 +53,17 @@ public class Lore {
         int line = 0;
         boolean first = false;
         for (int i = 0; i < meta.getLore().size(); i++) {
-            if (meta.getLore().get(i).startsWith(ChatColor.GRAY + lore)) {
-                line = i;
-                break;
-            }
-            if (meta.getLore().get(i).startsWith(ChatColor.DARK_GRAY + defaultlore)) {
-                line = i + 1;
-                first = true;
-                break;
+            if (hasEnchant(core, key, itemStack)) {
+                if (meta.getLore().get(i).startsWith(ChatColor.GRAY + lore)) {
+                    line = i;
+                    break;
+                }
+            } else {
+                if (meta.getLore().get(i).startsWith(ChatColor.DARK_GRAY + defaultlore)) {
+                    line = i;
+                    first = true;
+                    break;
+                }
             }
         }
         if (!first) {
