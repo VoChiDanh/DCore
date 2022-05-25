@@ -2,6 +2,7 @@ package net.danh.dcore.Enchant;
 
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -32,14 +33,15 @@ public class Lore {
     }
 
     /**
-     * @param core      Plugin
-     * @param key       key
-     * @param p         Player
-     * @param itemStack Item
-     * @param lore      lore
-     * @param level     level
+     * @param core        Plugin
+     * @param key         key
+     * @param p           Player
+     * @param itemStack   Item
+     * @param lore        lore
+     * @param level       level
+     * @param defaultlore Lore
      */
-    public static void addEnchant(JavaPlugin core, String key, Player p, ItemStack itemStack, String lore, Integer level) {
+    public static void addEnchant(JavaPlugin core, String key, Player p, ItemStack itemStack, String lore, Integer level, String defaultlore) {
         ItemMeta meta = itemStack.getItemMeta();
         if (meta == null) {
             return;
@@ -47,19 +49,29 @@ public class Lore {
         if (meta.getLore() == null) {
             return;
         }
-        List<String> itemlores;
+        List<String> itemlores = meta.getLore();
         int line = 0;
+        boolean first = false;
         for (int i = 0; i < meta.getLore().size(); i++) {
-            if (meta.getLore().get(i).startsWith(ChatColor.GRAY + lore) || meta.getLore().get(i).startsWith(ChatColor.DARK_GRAY + lore)) {
+            if (meta.getLore().get(i).startsWith(ChatColor.GRAY + lore)) {
                 line = i;
                 break;
             }
+            if (meta.getLore().get(i).startsWith(ChatColor.DARK_GRAY + defaultlore)) {
+                line = i + 1;
+                first = true;
+                break;
+            }
         }
-        itemlores = meta.getLore();
-        itemlores.set(line, ChatColor.GRAY + lore + " " + formatLevel(level));
+        if (!first) {
+            itemlores.set(line, ChatColor.GRAY + lore + " " + formatLevel(level));
+        } else {
+            itemlores.add(line, ChatColor.GRAY + lore + " " + formatLevel(level));
+        }
         meta.setLore(itemlores);
         meta.getPersistentDataContainer().set(new NamespacedKey(core, key), PersistentDataType.INTEGER, level);
         itemStack.setItemMeta(meta);
+        p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1F, 1F);
     }
 
     /**
