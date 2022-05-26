@@ -55,7 +55,6 @@ public class Lore {
         }
         List<String> itemlores = meta.getLore();
         int line = 0;
-        boolean first = false;
         for (int i = 0; i < meta.getLore().size(); i++) {
             if (hasEnchant(core, key, itemStack)) {
                 if (meta.getLore().get(i).startsWith(ChatColor.GRAY + lore)) {
@@ -65,16 +64,11 @@ public class Lore {
             } else {
                 if (meta.getLore().get(i).startsWith(ChatColor.DARK_GRAY + defaultlore)) {
                     line = i;
-                    first = true;
                     break;
                 }
             }
         }
-        if (!first) {
-            itemlores.set(line, ChatColor.GRAY + lore + " " + formatLevel(level));
-        } else {
-            itemlores.add(line, ChatColor.GRAY + lore + " " + formatLevel(level));
-        }
+        itemlores.set(line, ChatColor.GRAY + lore + " " + formatLevel(level));
         meta.setLore(itemlores);
         meta.getPersistentDataContainer().set(new NamespacedKey(core, key), PersistentDataType.INTEGER, level);
         itemStack.setItemMeta(meta);
