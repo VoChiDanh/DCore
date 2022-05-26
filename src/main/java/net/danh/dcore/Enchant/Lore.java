@@ -17,6 +17,12 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 public class Lore {
 
+    private static boolean full;
+
+    public static boolean isFull() {
+        return full;
+    }
+
     /**
      * @param level Integer
      * @return Roman Number
@@ -65,14 +71,20 @@ public class Lore {
                 if (meta.getLore().get(i).startsWith(ChatColor.DARK_GRAY + defaultlore)) {
                     line = i;
                     break;
+                } else {
+                    full = true;
                 }
             }
         }
-        itemlores.set(line, ChatColor.GRAY + lore + " " + formatLevel(level));
-        meta.setLore(itemlores);
-        meta.getPersistentDataContainer().set(new NamespacedKey(core, key), PersistentDataType.INTEGER, level);
-        itemStack.setItemMeta(meta);
-        p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1F, 1F);
+        if (!isFull()) {
+            itemlores.set(line, ChatColor.GRAY + lore + " " + formatLevel(level));
+            meta.setLore(itemlores);
+            meta.getPersistentDataContainer().set(new NamespacedKey(core, key), PersistentDataType.INTEGER, level);
+            itemStack.setItemMeta(meta);
+            p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1F, 1F);
+        } else {
+            p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 1F, 1F);
+        }
     }
 
     /**
