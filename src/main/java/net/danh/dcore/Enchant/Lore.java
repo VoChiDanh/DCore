@@ -69,9 +69,11 @@ public class Lore {
                     break;
                 }
             } else {
-                if (meta.getLore().get(i).startsWith(ChatColor.DARK_GRAY + defaultlore)) {
-                    line = i;
-                    full = false;
+                if (meta.getLore().contains(ChatColor.DARK_GRAY + defaultlore)) {
+                    if (meta.getLore().get(i).startsWith(ChatColor.DARK_GRAY + defaultlore)) {
+                        line = i;
+                        full = false;
+                    }
                 } else {
                     full = true;
                 }
