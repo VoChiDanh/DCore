@@ -17,12 +17,6 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 public class Lore {
 
-    private static boolean full;
-
-    public static boolean isFull() {
-        return full;
-    }
-
     /**
      * @param level Integer
      * @return Roman Number
@@ -65,31 +59,20 @@ public class Lore {
             if (hasEnchant(core, key, itemStack)) {
                 if (meta.getLore().get(i).startsWith(ChatColor.GRAY + lore)) {
                     line = i;
-                    full = false;
                     break;
                 }
             } else {
-                if (meta.getLore().contains(ChatColor.DARK_GRAY + defaultlore)) {
-                    if (meta.getLore().get(i).startsWith(ChatColor.DARK_GRAY + defaultlore)) {
-                        line = i;
-                        full = false;
-                        break;
-                    }
-                } else {
-                    full = true;
+                if (meta.getLore().get(i).startsWith(ChatColor.DARK_GRAY + defaultlore)) {
+                    line = i;
                     break;
                 }
             }
         }
-        if (!full) {
-            itemlores.set(line, ChatColor.GRAY + lore + " " + formatLevel(level));
-            meta.setLore(itemlores);
-            meta.getPersistentDataContainer().set(new NamespacedKey(core, key), PersistentDataType.INTEGER, level);
-            itemStack.setItemMeta(meta);
-            p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1F, 1F);
-        } else {
-            p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 1F, 1F);
-        }
+        itemlores.set(line, ChatColor.GRAY + lore + " " + formatLevel(level));
+        meta.setLore(itemlores);
+        meta.getPersistentDataContainer().set(new NamespacedKey(core, key), PersistentDataType.INTEGER, level);
+        itemStack.setItemMeta(meta);
+        p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1F, 1F);
     }
 
     /**
