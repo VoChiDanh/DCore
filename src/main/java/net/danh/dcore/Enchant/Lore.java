@@ -73,11 +73,12 @@ public class Lore {
                     if (meta.getLore().get(i).startsWith(ChatColor.DARK_GRAY + defaultlore)) {
                         line = i;
                         full = false;
+                        break;
                     }
                 } else {
                     full = true;
+                    break;
                 }
-                break;
             }
         }
         if (!full) {
