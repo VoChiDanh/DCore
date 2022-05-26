@@ -65,18 +65,20 @@ public class Lore {
             if (hasEnchant(core, key, itemStack)) {
                 if (meta.getLore().get(i).startsWith(ChatColor.GRAY + lore)) {
                     line = i;
+                    full = false;
                     break;
                 }
             } else {
                 if (meta.getLore().get(i).startsWith(ChatColor.DARK_GRAY + defaultlore)) {
                     line = i;
-                    break;
+                    full = false;
                 } else {
                     full = true;
                 }
+                break;
             }
         }
-        if (!isFull()) {
+        if (!full) {
             itemlores.set(line, ChatColor.GRAY + lore + " " + formatLevel(level));
             meta.setLore(itemlores);
             meta.getPersistentDataContainer().set(new NamespacedKey(core, key), PersistentDataType.INTEGER, level);
