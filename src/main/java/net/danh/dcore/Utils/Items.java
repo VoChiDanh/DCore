@@ -436,6 +436,66 @@ public class Items {
     }
 
     /**
+     * @param core  Plugin
+     * @param key   key
+     * @param type  PersistentDataType
+     * @param value amount
+     * @param item  itemstack
+     * @param line  line
+     * @param lore  lore
+     * @return itemstack
+     */
+    public static ItemStack addLoreStats(JavaPlugin core, String key, PersistentDataType<Integer, Integer> type, Integer value, ItemStack item, Integer line, String lore) {
+        ItemMeta meta = item.getItemMeta();
+        if (meta != null && meta.getLore() != null) {
+            NamespacedKey namespacedKey = new NamespacedKey(core, key);
+            meta.getPersistentDataContainer().set(namespacedKey, type, value);
+            List<String> lorestats = meta.getLore();
+            if (line == null) {
+                lorestats.add(Chat.colorize(lore));
+            } else {
+                lorestats.add(line, Chat.colorize(lore));
+            }
+            meta.setLore(lorestats);
+            item.setItemMeta(meta);
+            return item;
+        }
+        return null;
+    }
+
+    /**
+     * @param core Plugin
+     * @param key  key
+     * @param type PersistentDataType
+     * @param item itemstack
+     * @return int
+     */
+    public static int getLoreStats(JavaPlugin core, String key, PersistentDataType<Integer, Integer> type, ItemStack item) {
+        ItemMeta meta = item.getItemMeta();
+        if (meta != null && meta.getLore() != null) {
+            NamespacedKey namespacedKey = new NamespacedKey(core, key);
+            return meta.getPersistentDataContainer().getOrDefault(namespacedKey, type, 0);
+        }
+        return 0;
+    }
+
+    /**
+     * @param core Plugin
+     * @param key  key
+     * @param type PersistentDataType
+     * @param item itemstack
+     * @return true/false
+     */
+    public static boolean hasLoreStats(JavaPlugin core, String key, PersistentDataType<Integer, Integer> type, ItemStack item) {
+        ItemMeta meta = item.getItemMeta();
+        if (meta != null && meta.getLore() != null) {
+            NamespacedKey namespacedKey = new NamespacedKey(core, key);
+            return meta.getPersistentDataContainer().has(namespacedKey, type);
+        }
+        return false;
+    }
+
+    /**
      * @param core      Plugin
      * @param is        ItemStack
      * @param targetKey String
