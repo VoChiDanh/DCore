@@ -16,4 +16,17 @@ public class Number {
         Random r = new Random();
         return r.nextInt(max - min) + min;
     }
+
+    /**
+     * @param s String
+     * @return true/false
+     */
+    public static boolean isInteger(String s) {
+        try {
+            Integer.parseInt(s);
+        } catch (NumberFormatException | NullPointerException e) {
+            return false;
+        }
+        return true;
+    }
 }
