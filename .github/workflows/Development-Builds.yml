@@ -35,3 +35,5 @@ jobs:
           embed-footer-icon-url: "https://i.imgur.com/D5KVghH.png"
           embed-description: |
             ${{ github.event.head_commit.message }}
+            
+            JavaDocs: d-x-z.github.io/dcore/
