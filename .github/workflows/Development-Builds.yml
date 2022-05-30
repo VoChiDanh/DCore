@@ -36,4 +36,4 @@ jobs:
           embed-description: |
             ${{ github.event.head_commit.message }}
             
-            JavaDocs: d-x-z.github.io/dcore/
+            Github: [`${{ steps.split.outputs._1 }}`](https://github.com/${{ steps.split.outputs._1 }}) [`JavaDoc`](d-x-z.github.io/dcore/)
