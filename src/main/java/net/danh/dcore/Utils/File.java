@@ -11,6 +11,9 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * @version 1.2
+ */
 public class File {
 
     /**
