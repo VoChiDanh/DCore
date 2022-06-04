@@ -11,7 +11,7 @@ public class RString {
      */
     public static java.lang.String getRandomString(List<java.lang.String> list) {
         Random r = new Random();
-        int randomitem = r.nextInt(list.size());
+        int randomitem = r.nextInt(Math.abs(list.size()));
         return list.get(randomitem);
     }
 }
