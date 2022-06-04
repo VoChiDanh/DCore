@@ -14,7 +14,7 @@ public class Progress {
      * @param symbol            symbol
      * @param completedColor    color
      * @param notCompletedColor color
-     * @return String
+     * @return RString
      */
     public static String getProgressBar(int current, int max, int totalBars, char symbol, String completedColor, String notCompletedColor) {
         float percent = (float) current / max;

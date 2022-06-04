@@ -164,9 +164,9 @@ public class Items {
 
     /**
      * @param core        Plugin
-     * @param key         String
+     * @param key         RString
      * @param type        PersistentDataType
-     * @param value       String
+     * @param value       RString
      * @param material    Material
      * @param amount      int
      * @param glow        true/false
@@ -208,9 +208,9 @@ public class Items {
 
     /**
      * @param core        Plugin
-     * @param key         String
+     * @param key         RString
      * @param type        PersistentDataType
-     * @param value       String
+     * @param value       RString
      * @param material    Material
      * @param amount      int
      * @param glow        true/false
@@ -255,7 +255,7 @@ public class Items {
 
     /**
      * @param core        Plugin
-     * @param key         String
+     * @param key         RString
      * @param type        PersistentDataType
      * @param value       Double
      * @param material    Material
@@ -299,7 +299,7 @@ public class Items {
 
     /**
      * @param core        Plugin
-     * @param key         String
+     * @param key         RString
      * @param type        PersistentDataType
      * @param value       Double
      * @param material    Material
@@ -346,7 +346,7 @@ public class Items {
 
     /**
      * @param core        Plugin
-     * @param key         String
+     * @param key         RString
      * @param type        PersistentDataType
      * @param value       Integer
      * @param material    Material
@@ -390,7 +390,7 @@ public class Items {
 
     /**
      * @param core        Plugin
-     * @param key         String
+     * @param key         RString
      * @param type        PersistentDataType
      * @param value       Integer
      * @param material    Material
@@ -498,7 +498,7 @@ public class Items {
     /**
      * @param core      Plugin
      * @param is        ItemStack
-     * @param targetKey String
+     * @param targetKey RString
      * @param type      PersistentDataType
      * @return true/false
      */
@@ -516,7 +516,7 @@ public class Items {
     /**
      * @param core      Plugin
      * @param is        ItemStack
-     * @param targetKey String
+     * @param targetKey RString
      * @param type      PersistentDataType
      * @return true/false
      */
@@ -534,7 +534,7 @@ public class Items {
     /**
      * @param core      Plugin
      * @param is        ItemStack
-     * @param targetKey String
+     * @param targetKey RString
      * @param type      PersistentDataType
      * @return true/false
      */

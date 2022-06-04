@@ -14,7 +14,7 @@ public class Chat {
     private final static char COLOR_CHAR = ChatColor.COLOR_CHAR;
 
     /**
-     * @param input String
+     * @param input RString
      * @return string with color code
      */
     public static String colorize(String input) {

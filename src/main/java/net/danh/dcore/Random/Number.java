@@ -18,10 +18,10 @@ public class Number {
     }
 
     /**
-     * @param s String
+     * @param s RString
      * @return true/false
      */
-    public static boolean isInteger(String s) {
+    public static boolean isInteger(java.lang.String s) {
         try {
             Integer.parseInt(s);
         } catch (NumberFormatException | NullPointerException e) {
