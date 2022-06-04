@@ -10,8 +10,6 @@ public class RString {
      * @return random
      */
     public static java.lang.String getRandomString(List<java.lang.String> list) {
-        Random r = new Random();
-        int randomitem = r.nextInt(Math.abs(list.size()));
-        return list.get(randomitem);
+        return list.get(new Random().nextInt(list.size()));
     }
 }
