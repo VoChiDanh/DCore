@@ -19,7 +19,7 @@ public class Progress {
     public static String getProgressBar(int current, int max, int totalBars, char symbol, String completedColor, String notCompletedColor) {
         float percent = (float) current / max;
         int progressBars = (int) (totalBars * percent);
-        return Strings.repeat("" + Chat.colorize(completedColor + symbol), progressBars) + Strings.repeat("" + Chat.colorize(notCompletedColor + symbol), totalBars - progressBars);
+        return Strings.repeat(Chat.colorize(completedColor + symbol), progressBars) + Strings.repeat(Chat.colorize(notCompletedColor + symbol), totalBars - progressBars);
     }
 
     /**
