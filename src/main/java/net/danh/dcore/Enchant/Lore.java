@@ -27,6 +27,7 @@ public class Lore {
      * @param level Integer
      * @return Roman Number
      */
+    @Deprecated
     public static String formatLevel(Integer level) {
         int[] values = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
         String[] romanLiterals = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
@@ -82,7 +83,7 @@ public class Lore {
             }
         }
         if (!full) {
-            itemlores.set(line, ChatColor.GRAY + lore + " " + formatLevel(level));
+            itemlores.set(line, ChatColor.GRAY + lore + " " + String.format("%,d", level));
             meta.setLore(itemlores);
             meta.getPersistentDataContainer().set(new NamespacedKey(core, key), PersistentDataType.INTEGER, level);
             itemStack.setItemMeta(meta);
