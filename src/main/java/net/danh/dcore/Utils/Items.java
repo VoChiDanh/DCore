@@ -33,7 +33,7 @@ public class Items {
 
     /**
      * @param material    Material
-     * @param data        Data (For legacy version 1.13 below), null if you use 1.13+
+     * @param data        Data (For legacy version 1.12.x and below)
      * @param amount      int
      * @param glow        true/false
      * @param HideFlag    true/false
@@ -44,7 +44,7 @@ public class Items {
      */
     public static ItemStack makeItem(Material material, Short data, Integer amount, Boolean glow, Boolean HideFlag, Boolean Unbreakable, String name, List<String> lore) {
         ItemStack itemStack;
-        if (data == null) {
+        if (data >= 0) {
             itemStack = new ItemStack(material, amount);
             ItemMeta itemMeta = itemStack.getItemMeta();
             Objects.requireNonNull(itemMeta).setDisplayName(Chat.colorize(name));
