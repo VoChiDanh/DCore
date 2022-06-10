@@ -90,7 +90,7 @@ public class Lore {
             meta.getPersistentDataContainer().set(new NamespacedKey(core, key), PersistentDataType.INTEGER, level);
             itemStack.setItemMeta(meta);
             p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1F, 1F);
-            EnchantItemEvent event = new EnchantItemEvent(p, key, level);
+            EnchantItemEvent event = new EnchantItemEvent(p, key, level, itemStack);
             Bukkit.getServer().getPluginManager().callEvent(event);
         } else {
             p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 1F, 1F);
