@@ -1,6 +1,5 @@
 package net.danh.dcore.Utils;
 
-import net.danh.dcore.NMS.NMSAssistant;
 import org.bukkit.ChatColor;
 
 import java.util.regex.Matcher;
@@ -20,8 +19,7 @@ public class Chat {
     public static String colorize(String input) {
 
         input = ChatColor.translateAlternateColorCodes('&', input);
-        NMSAssistant nmsAssistant = new NMSAssistant();
-        if (nmsAssistant.isVersionGreaterThanOrEqualTo(16)) {
+        if (input.startsWith("&#")) {
             input = translateHexColorCodes(input);
         }
 
@@ -42,8 +40,7 @@ public class Chat {
         while (matcher.find()) {
 
             String group = matcher.group(1);
-            matcher.appendReplacement(buffer, COLOR_CHAR + "x" + COLOR_CHAR + group.charAt(0) + COLOR_CHAR + group.charAt(1) + COLOR_CHAR
-                    + group.charAt(2) + COLOR_CHAR + group.charAt(3) + COLOR_CHAR + group.charAt(4) + COLOR_CHAR + group.charAt(5));
+            matcher.appendReplacement(buffer, COLOR_CHAR + "x" + COLOR_CHAR + group.charAt(0) + COLOR_CHAR + group.charAt(1) + COLOR_CHAR + group.charAt(2) + COLOR_CHAR + group.charAt(3) + COLOR_CHAR + group.charAt(4) + COLOR_CHAR + group.charAt(5));
 
         }
 
