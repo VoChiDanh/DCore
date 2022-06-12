@@ -5,6 +5,9 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 
+/**
+ * @version 1.2
+ */
 public class EnchantItemEvent extends Event {
     private static final HandlerList handlers = new HandlerList();
     private final Player player;
@@ -12,6 +15,12 @@ public class EnchantItemEvent extends Event {
     private final Integer level;
     private final ItemStack item;
 
+    /**
+     * @param player Player
+     * @param enchant String
+     * @param level Level
+     * @param item Item
+     */
     public EnchantItemEvent(Player player, String enchant, Integer level, ItemStack item) {
         this.player = player;
         this.enchant = enchant;

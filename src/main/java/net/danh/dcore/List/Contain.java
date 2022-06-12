@@ -2,6 +2,9 @@ package net.danh.dcore.List;
 
 import java.util.List;
 
+/**
+ * @version 1.2
+ */
 public class Contain {
 
     /**

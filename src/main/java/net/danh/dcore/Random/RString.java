@@ -3,6 +3,9 @@ package net.danh.dcore.Random;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * @version 1.2
+ */
 public class RString {
 
     /**
