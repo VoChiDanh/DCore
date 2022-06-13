@@ -74,8 +74,7 @@ public class Calculator {
                 }
             }
             return result;
-        }
-        else {
+        } else {
             return Double.parseDouble(s);
         }
     }
