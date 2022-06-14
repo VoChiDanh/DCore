@@ -143,7 +143,7 @@ public class Calculator {
         }
         return result;
     }
-    private static String calculator(String Expression, int Demical) {
+    public static String calculator(String Expression, int Demical) {
         if (isExpresstion(Expression)) {
             if (Demical <= -1) {
                 if (!Expression.contains("(") && !Expression.contains(")")) {
