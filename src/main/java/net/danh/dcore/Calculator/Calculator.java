@@ -13,7 +13,7 @@ public class Calculator {
         s = s.replaceAll(" ", "");
         boolean is = true;
         for (int i = 0; i < s.length(); i++) {
-            if (!String.valueOf(s.charAt(i)).matches("[0-9+\\-*/%^@{}()]")) {
+            if (!String.valueOf(s.charAt(i)).matches("[0-9+\\-*/%^@{}().]")) {
                 is = false;
                 break;
             }
@@ -107,6 +107,8 @@ public class Calculator {
                     if (s.charAt(terms.get(i)) == '*') result *= b;
                     else if (s.charAt(terms.get(i)) == '/') result /= b;
                     else if (s.charAt(terms.get(i)) == '%') result %= b;
+                    
+                    
                 }
             }
             return result;
@@ -191,7 +193,7 @@ public class Calculator {
                     }
                 } else {
                     Expression = Expression.replaceAll(" ", "");
-                    final String regex = "([(]{1})([\\d\\s+\\-*/%^@{}]+)([)]{1})";
+                    final String regex = "([(]{1})([\\d\\s+\\-*/%^@{}.]+)([)]{1})";
                     final Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
                     final Matcher matcher = pattern.matcher(Expression);
                     if (matcher.find()) {
@@ -245,7 +247,7 @@ public class Calculator {
                     }
                 } else {
                     Expression = Expression.replaceAll(" ", "");
-                    final String regex = "([(]{1})([\\d\\s+\\-*/%^@{}]+)([)]{1})";
+                    final String regex = "([(]{1})([\\d\\s+\\-*/%^@{}.]+)([)]{1})";
                     final Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
                     final Matcher matcher = pattern.matcher(Expression);
                     if (matcher.find()) {
