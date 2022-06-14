@@ -12,11 +12,9 @@ public class Calculator {
     private static boolean isExpresstion(String s) {
         s = s.replaceAll(" ", "");
         boolean is = true;
+        List<Character> chars = new ArrayList<>();
         for (int i = 0; i < s.length(); i++) {
-            if (!String.valueOf(s.charAt(i)).matches("[0-9+\\-*/%^@{}()]")) {
-                is = false;
-                break;
-            }
+            if (!String.valueOf(s.charAt(i)).matches("[0-9+\\-*/%^@{}().]")) is = false;
         }
         return is;
     }
@@ -74,7 +72,8 @@ public class Calculator {
                 }
             }
             return result;
-        } else {
+        }
+        else {
             return Double.parseDouble(s);
         }
     }
@@ -143,7 +142,7 @@ public class Calculator {
         }
         return result;
     }
-    public static String calculator(String Expression, int Demical) {
+    private static String calculator(String Expression, int Demical) {
         if (isExpresstion(Expression)) {
             if (Demical <= -1) {
                 if (!Expression.contains("(") && !Expression.contains(")")) {
@@ -191,7 +190,7 @@ public class Calculator {
                     }
                 } else {
                     Expression = Expression.replaceAll(" ", "");
-                    final String regex = "([(]{1})([\\d\\s+\\-*/%^@{}]+)([)]{1})";
+                    final String regex = "([(]{1})([\\d\\s+\\-*\\/%^@{}.]+)([)]{1})";
                     final Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
                     final Matcher matcher = pattern.matcher(Expression);
                     if (matcher.find()) {
@@ -245,7 +244,7 @@ public class Calculator {
                     }
                 } else {
                     Expression = Expression.replaceAll(" ", "");
-                    final String regex = "([(]{1})([\\d\\s+\\-*/%^@{}]+)([)]{1})";
+                    final String regex = "([(]{1})([\\d\\s+\\-*\\/%^@{}.]+)([)]{1})";
                     final Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
                     final Matcher matcher = pattern.matcher(Expression);
                     if (matcher.find()) {
