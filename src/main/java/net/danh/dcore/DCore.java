@@ -7,8 +7,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 /**
  * @version 1.0
  */
-public class DCore {
+public class DCore{
+    public static boolean papistatus = false;
+    private static JavaPlugin instance;
 
+    public static JavaPlugin getInstance() {
+        return instance;
+    }
     /**
      * @return API Version
      */
@@ -30,7 +35,7 @@ public class DCore {
      */
     public static void RegisterDCore(JavaPlugin core) {
         dCoreLog("&3" + core.getDescription().getName() + " is using DCore " + getDCoreVersion());
+        papistatus = Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null;
+        instance = core;
     }
-
-
 }

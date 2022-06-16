@@ -1,9 +1,15 @@
 package net.danh.dcore.Utils;
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static net.danh.dcore.DCore.papistatus;
 
 /**
  * @version 1.0
@@ -45,5 +51,45 @@ public class Chat {
         }
 
         return matcher.appendTail(buffer).toString();
+    }
+
+    public static List<String> loreColorize(List<String> input) {
+        List<String> output = new ArrayList<>();
+        for (String string : input) {
+            output.add(colorize(string));
+        }
+        return output;
+    }
+
+    public static String papi(Player p, String input) {
+        if (papistatus) {
+            String output = PlaceholderAPI.setPlaceholders(p, input);
+            output = colorize(output);
+            return output;
+        } else {
+            return input;
+        }
+    }
+
+    public static List<String> papiLore(Player p, List<String> input) {
+        if (papistatus) {
+            List<String> output = new ArrayList<>();
+            for (String in : input) {
+                String out = PlaceholderAPI.setPlaceholders(p, in);
+                out = colorize(out);
+                output.add(out);
+            }
+            return output;
+        } else {
+            return input;
+        }
+    }
+
+    public static List<String> lowerStrings (List<String> input) {
+        List<String> output = new ArrayList<>();
+        for (String s : input) {
+            output.add(s.toLowerCase());
+        }
+        return output;
     }
 }
