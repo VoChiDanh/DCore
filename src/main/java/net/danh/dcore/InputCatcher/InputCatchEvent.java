@@ -49,4 +49,8 @@ public class InputCatchEvent extends Event {
     public HandlerList getHandlers() {
         return new HandlerList();
     }
+
+    public HandlerList getHandlerList() {
+        return new HandlerList();
+    }
 }
