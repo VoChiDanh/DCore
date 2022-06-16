@@ -7,6 +7,15 @@ import org.bukkit.event.HandlerList;
 public class InputCatchEvent extends Event {
     private Player p;
     private String i;
+    private static final HandlerList handlers = new HandlerList();
+
+    public HandlerList getHandlers() {
+        return handlers;
+    }
+
+    public static HandlerList getHandlerList() {
+        return handlers;
+    }
 
     public InputCatchEvent(Player player, String raw_input) {
         this.p = player;
@@ -43,14 +52,5 @@ public class InputCatchEvent extends Event {
 
     public double getDoubleInput() {
         return Double.parseDouble(i);
-    }
-
-    @Override
-    public HandlerList getHandlers() {
-        return new HandlerList();
-    }
-
-    public HandlerList getHandlerList() {
-        return new HandlerList();
     }
 }
