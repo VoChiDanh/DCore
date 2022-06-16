@@ -1,5 +1,6 @@
 package net.danh.dcore;
 
+import net.danh.dcore.InputCatcher.InputListener;
 import net.danh.dcore.Utils.Chat;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -33,9 +34,12 @@ public class DCore{
     /**
      * @param core Main of your plugins
      */
-    public static void RegisterDCore(JavaPlugin core) {
+    public static void RegisterDCore(JavaPlugin core, boolean regisInputCatchListener) {
         dCoreLog("&3" + core.getDescription().getName() + " is using DCore " + getDCoreVersion());
         papistatus = Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null;
         instance = core;
+        if (regisInputCatchListener) {
+            Bukkit.getServer().getPluginManager().registerEvents(new InputListener(), core);
+        }
     }
 }

@@ -101,145 +101,138 @@ public class InputListener implements Listener {
     }
 
     private static void doLast(Player p, String m, InputType_Number n) {
-        switch (n.getNumberFormat()) {
-            case BYTE:
-                if (isByte(m)) {
-                    switch (n.getNumberType()) {
-                        case POSITIVE:
-                            if (Byte.parseByte(m) >= 0) callInputEvent(p, m);
-                            else {
-                                sendPlayerMessage(p, papi(p, n.getInvalid_number()));
-                                if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
-                            }
-                        case NEGATIVE:
-                            if (Byte.parseByte(m) < 0) callInputEvent(p, m);
-                            else {
-                                sendPlayerMessage(p, papi(p, n.getInvalid_number()));
-                                if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
-                            }
-                        case ALL:
-                            callInputEvent(p, m);
+        if (n.getNumberFormat() == InputEnums.NumberFormat.BYTE) {
+            if (isByte(m)) {
+                if (n.getNumberType() == InputEnums.NumberType.POSITIVE) {
+                    if (Byte.parseByte(m) >= 0) callInputEvent(p, m);
+                    else {
+                        sendPlayerMessage(p, papi(p, n.getInvalid_number()));
+                        if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
                     }
-                }
-                else {
-                    sendPlayerMessage(p, papi(p, n.getInvalid_format_number()));
-                    if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
-                }
-            case SHORT:
-                if (isShort(m)) {
-                    switch (n.getNumberType()) {
-                        case POSITIVE:
-                            if (Short.parseShort(m) >= 0) callInputEvent(p, m);
-                            else {
-                                sendPlayerMessage(p, papi(p, n.getInvalid_number()));
-                                if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
-                            }
-                        case NEGATIVE:
-                            if (Short.parseShort(m) < 0) callInputEvent(p, m);
-                            else {
-                                sendPlayerMessage(p, papi(p, n.getInvalid_number()));
-                                if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
-                            }
-                        case ALL:
-                            callInputEvent(p, m);
+                } else if (n.getNumberType() == InputEnums.NumberType.NEGATIVE) {
+                    if (Byte.parseByte(m) < 0) callInputEvent(p, m);
+                    else {
+                        sendPlayerMessage(p, papi(p, n.getInvalid_number()));
+                        if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
                     }
+                } else if (n.getNumberType() == InputEnums.NumberType.ALL) {
+                    callInputEvent(p, m);
                 }
-                else {
-                    sendPlayerMessage(p, papi(p, n.getInvalid_format_number()));
-                    if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
-                }
-            case INTEGER:
-                if (isInteger(m)) {
-                    switch (n.getNumberType()) {
-                        case POSITIVE:
-                            if (Integer.parseInt(m) >= 0) callInputEvent(p, m);
-                            else {
-                                sendPlayerMessage(p, papi(p, n.getInvalid_number()));
-                                if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
-                            }
-                        case NEGATIVE:
-                            if (Integer.parseInt(m) < 0) callInputEvent(p, m);
-                            else {
-                                sendPlayerMessage(p, papi(p, n.getInvalid_number()));
-                                if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
-                            }
-                        case ALL:
-                            callInputEvent(p, m);
+            }
+            else {
+                sendPlayerMessage(p, papi(p, n.getInvalid_format_number()));
+                if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
+            }
+        } else if (n.getNumberFormat() == InputEnums.NumberFormat.SHORT) {
+            if (isShort(m)) {
+                if (n.getNumberType() == InputEnums.NumberType.POSITIVE) {
+                    if (Short.parseShort(m) >= 0) callInputEvent(p, m);
+                    else {
+                        sendPlayerMessage(p, papi(p, n.getInvalid_number()));
+                        if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
                     }
-                }
-                else {
-                    sendPlayerMessage(p, papi(p, n.getInvalid_format_number()));
-                    if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
-                }
-            case LONG:
-                if (isLong(m)) {
-                    switch (n.getNumberType()) {
-                        case POSITIVE:
-                            if (Long.parseLong(m) >= 0) callInputEvent(p, m);
-                            else {
-                                sendPlayerMessage(p, papi(p, n.getInvalid_number()));
-                                if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
-                            }
-                        case NEGATIVE:
-                            if (Long.parseLong(m) < 0) callInputEvent(p, m);
-                            else {
-                                sendPlayerMessage(p, papi(p, n.getInvalid_number()));
-                                if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
-                            }
-                        case ALL:
-                            callInputEvent(p, m);
+                } else if (n.getNumberType() == InputEnums.NumberType.NEGATIVE) {
+                    if (Short.parseShort(m) < 0) callInputEvent(p, m);
+                    else {
+                        sendPlayerMessage(p, papi(p, n.getInvalid_number()));
+                        if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
                     }
+                } else if (n.getNumberType() == InputEnums.NumberType.ALL) {
+                    callInputEvent(p, m);
                 }
-                else {
-                    sendPlayerMessage(p, papi(p, n.getInvalid_format_number()));
-                    if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
-                }
-            case FLOAT:
-                if (isFloat(m)) {
-                    switch (n.getNumberType()) {
-                        case POSITIVE:
-                            if (Float.parseFloat(m) >= 0) callInputEvent(p, m);
-                            else {
-                                sendPlayerMessage(p, papi(p, n.getInvalid_number()));
-                                if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
-                            }
-                        case NEGATIVE:
-                            if (Float.parseFloat(m) < 0) callInputEvent(p, m);
-                            else {
-                                sendPlayerMessage(p, papi(p, n.getInvalid_number()));
-                                if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
-                            }
-                        case ALL:
-                            callInputEvent(p, m);
+            }
+            else {
+                sendPlayerMessage(p, papi(p, n.getInvalid_format_number()));
+                if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
+            }
+        } else if (n.getNumberFormat() == InputEnums.NumberFormat.INTEGER) {
+            if (isInteger(m)) {
+                if (n.getNumberType() == InputEnums.NumberType.POSITIVE) {
+                    if (Integer.parseInt(m) >= 0) callInputEvent(p, m);
+                    else {
+                        sendPlayerMessage(p, papi(p, n.getInvalid_number()));
+                        if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
                     }
-                }
-                else {
-                    sendPlayerMessage(p, papi(p, n.getInvalid_format_number()));
-                    if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
-                }
-            case DOUBLE:
-                if (isDouble(m)) {
-                    switch (n.getNumberType()) {
-                        case POSITIVE:
-                            if (Double.parseDouble(m) >= 0) callInputEvent(p, m);
-                            else {
-                                sendPlayerMessage(p, papi(p, n.getInvalid_number()));
-                                if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
-                            }
-                        case NEGATIVE:
-                            if (Double.parseDouble(m) < 0) callInputEvent(p, m);
-                            else {
-                                sendPlayerMessage(p, papi(p, n.getInvalid_number()));
-                                if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
-                            }
-                        case ALL:
-                            callInputEvent(p, m);
+                } else if (n.getNumberType() == InputEnums.NumberType.NEGATIVE) {
+                    if (Integer.parseInt(m) < 0) callInputEvent(p, m);
+                    else {
+                        sendPlayerMessage(p, papi(p, n.getInvalid_number()));
+                        if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
                     }
+                } else if (n.getNumberType() == InputEnums.NumberType.ALL) {
+                    callInputEvent(p, m);
                 }
-                else {
-                    sendPlayerMessage(p, papi(p, n.getInvalid_format_number()));
-                    if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
+            }
+            else {
+                sendPlayerMessage(p, papi(p, n.getInvalid_format_number()));
+                if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
+            }
+        } else if (n.getNumberFormat() == InputEnums.NumberFormat.LONG) {
+            if (isLong(m)) {
+                if (n.getNumberType() == InputEnums.NumberType.POSITIVE) {
+                    if (Long.parseLong(m) >= 0) callInputEvent(p, m);
+                    else {
+                        sendPlayerMessage(p, papi(p, n.getInvalid_number()));
+                        if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
+                    }
+                } else if (n.getNumberType() == InputEnums.NumberType.NEGATIVE) {
+                    if (Long.parseLong(m) < 0) callInputEvent(p, m);
+                    else {
+                        sendPlayerMessage(p, papi(p, n.getInvalid_number()));
+                        if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
+                    }
+                } else if (n.getNumberType() == InputEnums.NumberType.ALL) {
+                    callInputEvent(p, m);
                 }
+            }
+            else {
+                sendPlayerMessage(p, papi(p, n.getInvalid_format_number()));
+                if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
+            }
+        } else if (n.getNumberFormat() == InputEnums.NumberFormat.FLOAT) {
+            if (isFloat(m)) {
+                if (n.getNumberType() == InputEnums.NumberType.POSITIVE) {
+                    if (Float.parseFloat(m) >= 0) callInputEvent(p, m);
+                    else {
+                        sendPlayerMessage(p, papi(p, n.getInvalid_number()));
+                        if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
+                    }
+                } else if (n.getNumberType() == InputEnums.NumberType.NEGATIVE) {
+                    if (Float.parseFloat(m) < 0) callInputEvent(p, m);
+                    else {
+                        sendPlayerMessage(p, papi(p, n.getInvalid_number()));
+                        if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
+                    }
+                } else if (n.getNumberType() == InputEnums.NumberType.ALL) {
+                    callInputEvent(p, m);
+                }
+            }
+            else {
+                sendPlayerMessage(p, papi(p, n.getInvalid_format_number()));
+                if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
+            }
+        } else if (n.getNumberFormat() == InputEnums.NumberFormat.DOUBLE) {
+            if (isDouble(m)) {
+                if (n.getNumberType() == InputEnums.NumberType.POSITIVE) {
+                    if (Double.parseDouble(m) >= 0) callInputEvent(p, m);
+                    else {
+                        sendPlayerMessage(p, papi(p, n.getInvalid_number()));
+                        if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
+                    }
+                } else if (n.getNumberType() == InputEnums.NumberType.NEGATIVE) {
+                    if (Double.parseDouble(m) < 0) callInputEvent(p, m);
+                    else {
+                        sendPlayerMessage(p, papi(p, n.getInvalid_number()));
+                        if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
+                    }
+                } else if (n.getNumberType() == InputEnums.NumberType.ALL) {
+                    callInputEvent(p, m);
+                }
+            }
+            else {
+                sendPlayerMessage(p, papi(p, n.getInvalid_format_number()));
+                if (n.getMethod() == InputEnums.InputMethod.ONE) input_number.remove(p);
+            }
         }
     }
 }
