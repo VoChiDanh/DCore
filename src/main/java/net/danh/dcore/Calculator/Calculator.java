@@ -20,7 +20,8 @@ public class Calculator {
         }
         return is;
     }
-    private static double parsefirst (String s) {
+
+    private static double parsefirst(String s) {
         s = s.replaceAll(" ", "");
         if (s.startsWith("@")) {
             int sqrt = 0;
@@ -86,15 +87,16 @@ public class Calculator {
                 if (i == 0) {
                     double a = Double.parseDouble(calculator(s.substring(0, percent.get(i)), -1));
                     double b;
-                    if (i == percent.size() - 1) b = Double.parseDouble(calculator(s.substring(percent.get(0) + 1), -1));
+                    if (i == percent.size() - 1)
+                        b = Double.parseDouble(calculator(s.substring(percent.get(0) + 1), -1));
                     else b = Double.parseDouble(calculator(s.substring(percent.get(0) + 1, percent.get(1)), -1));
                     result += (b / 100) * a;
                 } else if (i == percent.size() - 1) {
                     double a = Double.parseDouble(calculator(s.substring(percent.get(i) + 1), -1));
-                    result = (a /100) * result;
+                    result = (a / 100) * result;
                 } else {
                     double a = Double.parseDouble(calculator(s.substring(percent.get(i) + 1, percent.get(i + 1)), -1));
-                    result = (a /100) * result;
+                    result = (a / 100) * result;
                 }
             }
             return result;
@@ -102,7 +104,8 @@ public class Calculator {
             return Double.parseDouble(s);
         }
     }
-    private static double parsesecond (String s) {
+
+    private static double parsesecond(String s) {
         s = s.replaceAll(" ", "");
         if (s.contains("*") || s.contains("/") || s.contains("%")) {
             List<Integer> terms = new ArrayList<>();
@@ -138,7 +141,8 @@ public class Calculator {
             return Double.parseDouble(s);
         }
     }
-    private static double parsethird (String s) {
+
+    private static double parsethird(String s) {
         s = s.replaceAll(" ", "");
         List<Integer> operators = new ArrayList<>();
         double result = 0;
@@ -151,7 +155,8 @@ public class Calculator {
             if (i == 0) {
                 double a = Double.parseDouble(calculator(s.substring(0, operators.get(i)), -1));
                 double b;
-                if (i == operators.size() - 1) b = Double.parseDouble(calculator(s.substring(operators.get(0) + 1), -1));
+                if (i == operators.size() - 1)
+                    b = Double.parseDouble(calculator(s.substring(operators.get(0) + 1), -1));
                 else b = Double.parseDouble(calculator(s.substring(operators.get(0) + 1, operators.get(1)), -1));
                 if (s.charAt(operators.get(i)) == '+') result = a + b;
                 else if (s.charAt(operators.get(i)) == '-') result = a - b;
@@ -167,6 +172,7 @@ public class Calculator {
         }
         return result;
     }
+
     public static String calculator(String Expression, int Demical) {
         if (isExpresstion(Expression)) {
             final boolean parseSecond = !Expression.contains("*") && !Expression.contains("/") && !Expression.contains("%");
