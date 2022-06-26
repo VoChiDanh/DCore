@@ -4,8 +4,6 @@ import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -66,13 +64,8 @@ public abstract class CMDBase implements CommandExecutor, TabCompleter {
      */
     @Override
     public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
-        List<String> completions = new ArrayList<>();
-        List<String> commands = new ArrayList<>();
-
-        TabComplete(sender, args);
-        Collections.sort(completions);
-        return completions;
+        return TabComplete(sender, args);
     }
 
-    public abstract void TabComplete(CommandSender sender, String[] args);
+    public abstract List<String> TabComplete(CommandSender sender, String[] args);
 }
