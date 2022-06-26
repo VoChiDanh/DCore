@@ -4,12 +4,15 @@ import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 /**
  * @version 1.0
  */
-public abstract class CMDBase implements CommandExecutor {
+public abstract class CMDBase implements CommandExecutor, TabCompleter {
 
     protected JavaPlugin core;
 
@@ -21,6 +24,7 @@ public abstract class CMDBase implements CommandExecutor {
         this.core = core;
         PluginCommand pluginCommand = core.getCommand(name);
         Objects.requireNonNull(pluginCommand).setExecutor(this);
+        pluginCommand.setTabCompleter(this);
     }
 
     /**
@@ -52,4 +56,23 @@ public abstract class CMDBase implements CommandExecutor {
         }
         return true;
     }
+
+    /**
+     * @param sender sender
+     * @param cmd    cmd
+     * @param label  label
+     * @param args   args
+     * @return tab
+     */
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
+        List<String> completions = new ArrayList<>();
+        List<String> commands = new ArrayList<>();
+
+        TabComplete(sender, args);
+        Collections.sort(completions);
+        return completions;
+    }
+
+    public abstract void TabComplete(CommandSender sender, String[] args);
 }
