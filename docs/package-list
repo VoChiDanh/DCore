@@ -6,4 +6,5 @@ net.danh.dcore.Events
 net.danh.dcore.List
 net.danh.dcore.NMS
 net.danh.dcore.Random
+net.danh.dcore.Resource
 net.danh.dcore.Utils

@@ -21,12 +21,23 @@ public class Number {
      * @param s RString
      * @return true/false
      */
-    public static boolean isInteger(java.lang.String s) {
+    public static int getInt(java.lang.String s) {
         try {
-            Integer.parseInt(s);
+            return Integer.parseInt(s);
         } catch (NumberFormatException | NullPointerException e) {
-            return false;
+            return 0;
         }
-        return true;
+    }
+
+    /**
+     * @param s RString
+     * @return true/false
+     */
+    public static double getDouble(java.lang.String s) {
+        try {
+            return Double.parseDouble(s);
+        } catch (NumberFormatException | NullPointerException e) {
+            return 0d;
+        }
     }
 }
