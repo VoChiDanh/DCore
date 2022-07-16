@@ -27,7 +27,7 @@ public class FileFolder {
         if (!this.file.exists()) {
             this.file.getParentFile().mkdirs();
             try {
-                core.saveResource(core.getDataFolder() + File.separator + foldername + File.separator + this.name + ".yml", false);
+                core.saveResource( foldername + File.separator + this.name + ".yml", false);
             } catch (Exception e) {
                 e.printStackTrace();
             }
