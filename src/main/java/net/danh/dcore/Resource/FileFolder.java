@@ -27,7 +27,7 @@ public class FileFolder {
         if (!this.file.exists()) {
             this.file.getParentFile().mkdirs();
             try {
-                this.file.createNewFile();
+                core.saveResource(this.name + ".yml", false);
             } catch (Exception e) {
                 e.printStackTrace();
             }
