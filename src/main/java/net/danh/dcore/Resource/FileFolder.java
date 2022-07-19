@@ -23,7 +23,7 @@ public class FileFolder {
     }
 
     public void load() {
-        this.file = new File(core.getDataFolder() + File.separator + foldername, this.name + ".yml");
+        this.file = new File(core.getDataFolder() + File.separator + foldername + File.separator, this.name + ".yml");
         if (!this.file.exists()) {
             this.file.getParentFile().mkdirs();
             try {
