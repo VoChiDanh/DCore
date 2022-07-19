@@ -23,7 +23,7 @@ public class FileFolder {
     }
 
     public void load() {
-        this.file = new File(core.getDataFolder(), foldername + File.separator + this.name + ".yml");
+        this.file = new File(core.getDataFolder() + File.separator + foldername, this.name + ".yml");
         if (!this.file.exists()) {
             try {
                 core.saveResource(foldername + File.separator + this.name + ".yml", false);
