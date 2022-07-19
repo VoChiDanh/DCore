@@ -36,7 +36,7 @@ public class FileFolder {
         File file = new File(folder, this.filename + ".yml");
         if (!file.exists()) {
             try {
-                core.saveResource(file.getPath(), false);
+                core.saveResource(foldername + File.separator + filename + ".yml", false);
             } catch (Exception e) {
                 e.printStackTrace();
             }
