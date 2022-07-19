@@ -26,7 +26,7 @@ public class FileFolder {
         File folder = new File(core.getDataFolder(), this.foldername);
         if (!folder.exists()) {
             try {
-                folder.mkdir();
+                folder.getParentFile().mkdirs();
             } catch (Exception e) {
                 e.printStackTrace();
             }
