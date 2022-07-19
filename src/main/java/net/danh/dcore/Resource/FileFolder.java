@@ -23,15 +23,23 @@ public class FileFolder {
     }
 
     public void load() {
-        this.file = new File(core.getDataFolder() + File.separator + this.foldername, this.name + ".yml");
-        if (!this.file.exists()) {
+        File folder = new File(core.getDataFolder(), this.foldername);
+        if (!folder.exists()) {
             try {
-                core.saveResource(this.foldername + File.separator + this.name + ".yml", false);
+                folder.mkdir();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        this.config = YamlConfiguration.loadConfiguration(this.file);
+        File file = new File(folder, this.file + ".yml");
+        if (!file.exists()) {
+            try {
+                core.saveResource(file.getPath(), false);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        this.config = YamlConfiguration.loadConfiguration(file);
     }
 
     public String getName() {
