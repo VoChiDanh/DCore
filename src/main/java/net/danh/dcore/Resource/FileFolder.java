@@ -18,15 +18,15 @@ public class FileFolder {
         this.name = name;
         this.foldername = foldername;
         this.core = core;
-        this.file = new File(core.getDataFolder() + File.separator + foldername, name);
+        this.file = new File(core.getDataFolder() + File.separator + foldername, name + ".yml");
         this.config = YamlConfiguration.loadConfiguration(this.file);
     }
 
     public void load() {
-        this.file = new File(core.getDataFolder() + File.separator + this.foldername, this.name);
+        this.file = new File(core.getDataFolder() + File.separator + this.foldername, this.name + ".yml");
         if (!this.file.exists()) {
             try {
-                core.saveResource(File.separator + this.foldername + File.separator + this.name, false);
+                core.saveResource(this.foldername + File.separator + this.name + ".yml", false);
             } catch (Exception e) {
                 e.printStackTrace();
             }
