@@ -23,11 +23,10 @@ public class FileFolder {
     }
 
     public void load() {
-        this.file = new File(core.getDataFolder() + File.separator + foldername + File.separator, this.name + ".yml");
+        this.file = new File(core.getDataFolder(), foldername + File.separator + this.name + ".yml");
         if (!this.file.exists()) {
-            this.file.getParentFile().mkdirs();
             try {
-                core.saveResource( foldername + File.separator + this.name + ".yml", false);
+                core.saveResource(foldername + File.separator + this.name + ".yml", false);
             } catch (Exception e) {
                 e.printStackTrace();
             }
