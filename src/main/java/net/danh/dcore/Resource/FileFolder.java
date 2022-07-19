@@ -11,13 +11,15 @@ public class FileFolder {
     private final String name;
     private final String foldername;
     private final JavaPlugin core;
-    private File file;
+    private final File file;
+    private final String filename;
     private FileConfiguration config;
 
     public FileFolder(JavaPlugin core, String name, String foldername) {
         this.name = name;
         this.foldername = foldername;
         this.core = core;
+        this.filename = name;
         this.file = new File(core.getDataFolder() + File.separator + foldername, name + ".yml");
         this.config = YamlConfiguration.loadConfiguration(this.file);
     }
@@ -31,7 +33,7 @@ public class FileFolder {
                 e.printStackTrace();
             }
         }
-        File file = new File(folder, this.file + ".yml");
+        File file = new File(folder, this.filename + ".yml");
         if (!file.exists()) {
             try {
                 core.saveResource(file.getPath(), false);
