@@ -12,36 +12,26 @@ public class FileFolder {
     private final String foldername;
     private final JavaPlugin core;
     private final File file;
-    private final String filename;
     private FileConfiguration config;
 
     public FileFolder(JavaPlugin core, String name, String foldername) {
         this.name = name;
         this.foldername = foldername;
         this.core = core;
-        this.filename = name;
-        this.file = new File(core.getDataFolder() + File.separator + foldername, name + ".yml");
+        this.file = new File(core.getDataFolder() + File.separator + foldername + File.separator + name + ".yml");
         this.config = YamlConfiguration.loadConfiguration(this.file);
     }
 
     public void load() {
-        File folder = new File(core.getDataFolder(), this.foldername);
-        if (!folder.exists()) {
-            try {
-                folder.mkdir();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        File file = new File(folder, this.filename + ".yml");
+        File file = new File(core.getDataFolder() + File.separator + this.foldername + File.separator + this.name + ".yml");
         if (!file.exists()) {
             try {
-                YamlConfiguration.loadConfiguration(file).options().copyDefaults();
+                core.saveResource(core.getDataFolder() + File.separator + this.foldername + File.separator + this.name + ".yml", false);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        this.config = YamlConfiguration.loadConfiguration(file);
+        this.config = YamlConfiguration.loadConfiguration(this.file);
     }
 
     public String getName() {
