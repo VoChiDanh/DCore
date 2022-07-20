@@ -1,5 +1,6 @@
 package net.danh.dcore.Resource;
 
+import net.danh.dcore.DCore;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -24,10 +25,11 @@ public class FileFolder {
 
     public void load() {
         File file = new File(core.getDataFolder() + File.separator + this.foldername, this.name + ".yml");
-        if (!file.exists()) {
+        DCore.dCoreLog(file.getPath());
+        DCore.dCoreLog(this.file.getPath());
+        if (!this.file.exists()) {
             try {
-                getConfig().options().copyDefaults(true);
-                save();
+                core.saveResource(this.foldername + File.separator + this.name + ".yml", false);
             } catch (Exception e) {
                 e.printStackTrace();
             }
