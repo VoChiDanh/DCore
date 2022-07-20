@@ -19,12 +19,12 @@ public class FileFolder {
         this.name = name;
         this.foldername = foldername;
         this.core = core;
-        this.file = new File(core.getDataFolder() + File.separator + foldername, name + ".yml");
+        this.file = new File(core.getDataFolder(), foldername + File.separator + name + ".yml");
         this.config = YamlConfiguration.loadConfiguration(this.file);
     }
 
     public void load() {
-        File file = new File(core.getDataFolder() + File.separator + this.foldername, this.name + ".yml");
+        File file = new File(core.getDataFolder(), this.foldername + File.separator + this.name + ".yml");
         DCore.dCoreLog(file.getPath());
         DCore.dCoreLog(this.file.getPath());
         if (!this.file.exists()) {
