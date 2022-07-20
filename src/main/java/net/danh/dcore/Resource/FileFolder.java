@@ -12,7 +12,7 @@ public class FileFolder {
     private final String name;
     private final String foldername;
     private final JavaPlugin core;
-    private final File file;
+    private File file;
     private FileConfiguration config;
 
     public FileFolder(JavaPlugin core, String name, String foldername) {
@@ -24,9 +24,7 @@ public class FileFolder {
     }
 
     public void load() {
-        File file = new File(core.getDataFolder(), this.foldername + File.separator + this.name + ".yml");
-        DCore.dCoreLog(file.getPath());
-        DCore.dCoreLog(this.file.getPath());
+        this.file = new File(core.getDataFolder(), foldername + File.separator + name + ".yml");
         if (!this.file.exists()) {
             try {
                 core.saveResource(this.foldername + File.separator + this.name + ".yml", false);
