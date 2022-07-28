@@ -11,7 +11,6 @@ import java.util.regex.Pattern;
  */
 public class Calculator {
     private static boolean isExpresstion(String s) {
-        s = String.valueOf((int) BigDecimal.valueOf(Long.parseLong(s)).doubleValue());
         s = s.replaceAll(" ", "");
         boolean is = true;
         for (int i = 0; i < s.length(); i++) {
@@ -24,7 +23,6 @@ public class Calculator {
     }
 
     private static double parsefirst(String s) {
-        s = String.valueOf((int) BigDecimal.valueOf(Long.parseLong(s)).doubleValue());
         s = s.replaceAll(" ", "");
         if (s.startsWith("@")) {
             int sqrt = 0;
@@ -50,7 +48,7 @@ public class Calculator {
                 }
             }
             if (s.charAt(sqrt + 1) == '{') {
-                double number = BigDecimal.valueOf(Long.parseLong(calculator(s.substring(open + 1, close), -1))).doubleValue();
+                double number = BigDecimal.valueOf(Double.parseDouble(calculator(s.substring(open + 1, close), -1))).doubleValue();
                 result = Math.sqrt(number);
             }
             return result;
@@ -64,18 +62,16 @@ public class Calculator {
             }
             for (int i = 0; i < pow.size(); i++) {
                 if (i == 0) {
-                    double a = BigDecimal.valueOf(Long.parseLong(calculator(s.substring(0, pow.get(i)), -1))).doubleValue();
+                    double a = BigDecimal.valueOf(Double.parseDouble(calculator(s.substring(0, pow.get(i)), -1))).doubleValue();
                     double b;
-                    if (i == pow.size() - 1)
-                        b = BigDecimal.valueOf(Long.parseLong(calculator(s.substring(pow.get(0) + 1), -1))).doubleValue();
-                    else
-                        b = BigDecimal.valueOf(Long.parseLong(calculator(s.substring(pow.get(0) + 1, pow.get(1)), -1))).doubleValue();
+                    if (i == pow.size() - 1) b = BigDecimal.valueOf(Double.parseDouble(calculator(s.substring(pow.get(0) + 1), -1))).doubleValue();
+                    else b = BigDecimal.valueOf(Double.parseDouble(calculator(s.substring(pow.get(0) + 1, pow.get(1)), -1))).doubleValue();
                     result += Math.pow(a, b);
                 } else if (i == pow.size() - 1) {
-                    double a = BigDecimal.valueOf(Long.parseLong(calculator(s.substring(pow.get(i) + 1), -1))).doubleValue();
+                    double a = BigDecimal.valueOf(Double.parseDouble(calculator(s.substring(pow.get(i) + 1), -1))).doubleValue();
                     result = Math.pow(result, a);
                 } else {
-                    double a = BigDecimal.valueOf(Long.parseLong(calculator(s.substring(pow.get(i) + 1, pow.get(i + 1)), -1))).doubleValue();
+                    double a = BigDecimal.valueOf(Double.parseDouble(calculator(s.substring(pow.get(i) + 1, pow.get(i + 1)), -1))).doubleValue();
                     result = Math.pow(result, a);
                 }
             }
@@ -90,29 +86,27 @@ public class Calculator {
             }
             for (int i = 0; i < percent.size(); i++) {
                 if (i == 0) {
-                    double a = BigDecimal.valueOf(Long.parseLong(calculator(s.substring(0, percent.get(i)), -1))).doubleValue();
+                    double a = BigDecimal.valueOf(Double.parseDouble(calculator(s.substring(0, percent.get(i)), -1))).doubleValue();
                     double b;
                     if (i == percent.size() - 1)
-                        b = BigDecimal.valueOf(Long.parseLong(calculator(s.substring(percent.get(0) + 1), -1))).doubleValue();
-                    else
-                        b = BigDecimal.valueOf(Long.parseLong(calculator(s.substring(percent.get(0) + 1, percent.get(1)), -1))).doubleValue();
+                        b = BigDecimal.valueOf(Double.parseDouble(calculator(s.substring(percent.get(0) + 1), -1))).doubleValue();
+                    else b = BigDecimal.valueOf(Double.parseDouble(calculator(s.substring(percent.get(0) + 1, percent.get(1)), -1))).doubleValue();
                     result += (b / 100) * a;
                 } else if (i == percent.size() - 1) {
-                    double a = BigDecimal.valueOf(Long.parseLong(calculator(s.substring(percent.get(i) + 1), -1))).doubleValue();
+                    double a = BigDecimal.valueOf(Double.parseDouble(calculator(s.substring(percent.get(i) + 1), -1))).doubleValue();
                     result = (a / 100) * result;
                 } else {
-                    double a = BigDecimal.valueOf(Long.parseLong(calculator(s.substring(percent.get(i) + 1, percent.get(i + 1)), -1))).doubleValue();
+                    double a = BigDecimal.valueOf(Double.parseDouble(calculator(s.substring(percent.get(i) + 1, percent.get(i + 1)), -1))).doubleValue();
                     result = (a / 100) * result;
                 }
             }
             return result;
         } else {
-            return BigDecimal.valueOf(Long.parseLong(s)).doubleValue();
+            return BigDecimal.valueOf(Double.parseDouble(s)).doubleValue();
         }
     }
 
     private static double parsesecond(String s) {
-        s = String.valueOf((int) BigDecimal.valueOf(Long.parseLong(s)).doubleValue());
         s = s.replaceAll(" ", "");
         if (s.contains("*") || s.contains("/") || s.contains("%")) {
             List<Integer> terms = new ArrayList<>();
@@ -124,22 +118,20 @@ public class Calculator {
             }
             for (int i = 0; i < terms.size(); i++) {
                 if (i == 0) {
-                    double a = BigDecimal.valueOf(Long.parseLong(calculator(s.substring(0, terms.get(i)), -1))).doubleValue();
+                    double a = BigDecimal.valueOf(Double.parseDouble(calculator(s.substring(0, terms.get(i)), -1))).doubleValue();
                     double b;
-                    if (i == terms.size() - 1)
-                        b = BigDecimal.valueOf(Long.parseLong(calculator(s.substring(terms.get(0) + 1), -1))).doubleValue();
-                    else
-                        b = BigDecimal.valueOf(Long.parseLong(calculator(s.substring(terms.get(0) + 1, terms.get(1)), -1))).doubleValue();
+                    if (i == terms.size() - 1) b = BigDecimal.valueOf(Double.parseDouble(calculator(s.substring(terms.get(0) + 1), -1))).doubleValue();
+                    else b = BigDecimal.valueOf(Double.parseDouble(calculator(s.substring(terms.get(0) + 1, terms.get(1)), -1))).doubleValue();
                     if (s.charAt(terms.get(i)) == '*') result = a * b;
                     else if (s.charAt(terms.get(i)) == '/') result = a / b;
                     else if (s.charAt(terms.get(i)) == '%') result = a % b;
                 } else if (i == terms.size() - 1) {
-                    double b = BigDecimal.valueOf(Long.parseLong(calculator(s.substring(terms.get(i) + 1), -1))).doubleValue();
+                    double b = BigDecimal.valueOf(Double.parseDouble(calculator(s.substring(terms.get(i) + 1), -1))).doubleValue();
                     if (s.charAt(terms.get(i)) == '*') result *= b;
                     else if (s.charAt(terms.get(i)) == '/') result /= b;
                     else if (s.charAt(terms.get(i)) == '%') result %= b;
                 } else {
-                    double b = BigDecimal.valueOf(Long.parseLong(calculator(s.substring(terms.get(i) + 1, terms.get(i + 1)), -1))).doubleValue();
+                    double b = BigDecimal.valueOf(Double.parseDouble(calculator(s.substring(terms.get(i) + 1, terms.get(i + 1)), -1))).doubleValue();
                     if (s.charAt(terms.get(i)) == '*') result *= b;
                     else if (s.charAt(terms.get(i)) == '/') result /= b;
                     else if (s.charAt(terms.get(i)) == '%') result %= b;
@@ -147,12 +139,11 @@ public class Calculator {
             }
             return result;
         } else {
-            return BigDecimal.valueOf(Long.parseLong(s)).doubleValue();
+            return BigDecimal.valueOf(Double.parseDouble(s)).doubleValue();
         }
     }
 
     private static double parsethird(String s) {
-        s = String.valueOf((int) BigDecimal.valueOf(Long.parseLong(s)).doubleValue());
         s = s.replaceAll(" ", "");
         List<Integer> operators = new ArrayList<>();
         double result = 0;
@@ -163,20 +154,19 @@ public class Calculator {
         }
         for (int i = 0; i < operators.size(); i++) {
             if (i == 0) {
-                double a = BigDecimal.valueOf(Long.parseLong(calculator(s.substring(0, operators.get(i)), -1))).doubleValue();
+                double a = BigDecimal.valueOf(Double.parseDouble(calculator(s.substring(0, operators.get(i)), -1))).doubleValue();
                 double b;
                 if (i == operators.size() - 1)
-                    b = BigDecimal.valueOf(Long.parseLong(calculator(s.substring(operators.get(0) + 1), -1))).doubleValue();
-                else
-                    b = BigDecimal.valueOf(Long.parseLong(calculator(s.substring(operators.get(0) + 1, operators.get(1)), -1))).doubleValue();
+                    b = BigDecimal.valueOf(Double.parseDouble(calculator(s.substring(operators.get(0) + 1), -1))).doubleValue();
+                else b = BigDecimal.valueOf(Double.parseDouble(calculator(s.substring(operators.get(0) + 1, operators.get(1)), -1))).doubleValue();
                 if (s.charAt(operators.get(i)) == '+') result = a + b;
                 else if (s.charAt(operators.get(i)) == '-') result = a - b;
             } else if (i == operators.size() - 1) {
-                double b = BigDecimal.valueOf(Long.parseLong(calculator(s.substring(operators.get(i) + 1), -1))).doubleValue();
+                double b = BigDecimal.valueOf(Double.parseDouble(calculator(s.substring(operators.get(i) + 1), -1))).doubleValue();
                 if (s.charAt(operators.get(i)) == '+') result += b;
                 else if (s.charAt(operators.get(i)) == '-') result -= b;
             } else {
-                double b = BigDecimal.valueOf(Long.parseLong(calculator(s.substring(operators.get(i) + 1, operators.get(i + 1)), -1))).doubleValue();
+                double b = BigDecimal.valueOf(Double.parseDouble(calculator(s.substring(operators.get(i) + 1, operators.get(i + 1)), -1))).doubleValue();
                 if (s.charAt(operators.get(i)) == '+') result += b;
                 else if (s.charAt(operators.get(i)) == '-') result -= b;
             }
