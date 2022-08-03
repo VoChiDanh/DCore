@@ -6,9 +6,9 @@ public abstract class DVersion {
 
     public abstract String getDevBuildVersion();
 
-    public abstract Boolean isDevBuild();
+    public abstract String isDevBuild();
 
-    public abstract Boolean isPremium();
+    public abstract String isPremium();
 
     public abstract String getReleaseLink();
 
