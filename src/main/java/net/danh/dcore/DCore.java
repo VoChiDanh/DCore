@@ -22,7 +22,7 @@ public class DCore {
      */
     public static void dCoreLog(String... message) {
         for (String messages : message) {
-            Bukkit.getLogger().log(Level.WARNING, Chat.colorize("[DCore] " + messages));
+            Bukkit.getLogger().log(Level.WARNING, "[DCore] " + messages);
         }
     }
 
@@ -30,7 +30,7 @@ public class DCore {
      * @param core Main of your plugins
      */
     public static void RegisterDCore(JavaPlugin core) {
-        dCoreLog("&3" + core.getDescription().getName() + " is using DCore " + getDCoreVersion());
+        dCoreLog(core.getDescription().getName() + " is using DCore " + getDCoreVersion());
     }
 
 }
