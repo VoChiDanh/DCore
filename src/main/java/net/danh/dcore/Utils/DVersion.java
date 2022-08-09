@@ -6,9 +6,9 @@ public abstract class DVersion {
 
     public abstract String getDevBuildVersion();
 
-    public abstract String isDevBuild();
+    public abstract Status isDevBuild();
 
-    public abstract String isPremium();
+    public abstract Status isPremium();
 
     public abstract String getReleaseLink();
 
