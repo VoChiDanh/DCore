@@ -2,13 +2,15 @@ package net.danh.dcore.Utils;
 
 public enum Status {
 
-    TRUE("&aTrue", true),
-    FALSE("&cFalse", false);
+    TRUE("&aTrue", "&a✓", true),
+    FALSE("&cFalse", "&c✘", false);
     private final String status;
+    private final String symbol;
     private final Boolean type;
 
-    Status(String s, Boolean type) {
+    Status(String s, String symbol, Boolean type) {
         status = s;
+        this.symbol = symbol;
         this.type = type;
     }
 
@@ -18,5 +20,9 @@ public enum Status {
 
     public Boolean getType() {
         return type;
+    }
+
+    public String getSymbol() {
+        return symbol;
     }
 }
