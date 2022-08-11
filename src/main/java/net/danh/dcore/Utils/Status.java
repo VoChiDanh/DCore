@@ -2,7 +2,7 @@ package net.danh.dcore.Utils;
 
 public enum Status {
 
-    TRUE("&aTrue", "&a✓", true),
+    TRUE("&aTrue", "&a✔", true),
     FALSE("&cFalse", "&c✘", false);
     private final String status;
     private final String symbol;
