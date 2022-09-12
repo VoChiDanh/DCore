@@ -13,8 +13,12 @@ public class Number {
      * @return random
      */
     public static int getRandomInt(int min, int max) {
-        Random r = new Random();
-        return r.nextInt(max - min) + min;
+        if (max >= min + 2) {
+            Random r = new Random();
+            return r.nextInt(max - min) + min;
+        } else {
+            return min;
+        }
     }
 
     /**
