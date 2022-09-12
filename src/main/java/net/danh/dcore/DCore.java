@@ -1,6 +1,5 @@
 package net.danh.dcore;
 
-import net.danh.dcore.Utils.Chat;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 

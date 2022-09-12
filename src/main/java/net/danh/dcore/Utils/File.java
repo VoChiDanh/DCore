@@ -18,7 +18,7 @@ public class File {
 
     /**
      * @param core Plugin
-     * @param get FileConfiguration
+     * @param get  FileConfiguration
      * @param file File.yml
      */
     public static void updateFile(JavaPlugin core, FileConfiguration get, String file) {

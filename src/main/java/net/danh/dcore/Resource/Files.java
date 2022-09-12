@@ -9,8 +9,8 @@ import java.io.File;
 public class Files {
 
     private final String name;
-    private File file;
     private final JavaPlugin core;
+    private File file;
     private FileConfiguration config;
 
     public Files(JavaPlugin core, String name) {

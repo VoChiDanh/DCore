@@ -69,7 +69,7 @@ public abstract class CMDBase implements CommandExecutor, TabCompleter {
 
     /**
      * @param sender sender
-     * @param args args
+     * @param args   args
      * @return tab
      */
     public abstract List<String> TabComplete(CommandSender sender, String[] args);
