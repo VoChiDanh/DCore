@@ -1,6 +1,6 @@
 package net.danh.dcore.Random;
 
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * @version 1.0
@@ -14,8 +14,7 @@ public class Number {
      */
     public static int getRandomInt(int min, int max) {
         if (max >= min + 2) {
-            Random r = new Random();
-            return r.nextInt(max - min) + min;
+            return ThreadLocalRandom.current().nextInt(min, max);
         } else {
             return min;
         }
@@ -28,8 +27,7 @@ public class Number {
      */
     public static double getRandomDouble(double min, double max) {
         if (max >= min + 2) {
-            Random r = new Random();
-            return r.nextDouble(max - min) + min;
+            return ThreadLocalRandom.current().nextDouble(min, max);
         } else {
             return min;
         }
